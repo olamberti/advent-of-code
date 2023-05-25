@@ -1,10 +1,9 @@
 from copy import deepcopy as dp
 memory = [int(x) for x in open('05.txt').read().split(',')]
-memory_ = dp(memory)
 
 class IntCode:
     def __init__(self, mem):
-      self.mem = mem
+      self.mem = dp(mem)
       self.p = 0
       self.halt = False
     
@@ -79,6 +78,5 @@ while not p1.halt:
 print(res)
 
 # P2
-memory = dp(memory_)
 p2 = IntCode(memory)
 print(p2.run(5))
