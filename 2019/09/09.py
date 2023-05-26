@@ -38,7 +38,6 @@ class IntCode:
       elif mode == 1: return None
       elif mode == 2: return par + self.base
         
-
     # Program run
     def run(self, inp):
       while not self.halt:
@@ -60,17 +59,13 @@ class IntCode:
           return vals[0]
         # 5. & 6. Jump
         elif oc == 5 or oc == 6:
-          # Jump if true
           if oc == 5: 
             if vals[0] != 0: self.pos = vals[1] 
-          # Jump if false
           elif oc == 6: 
             if vals[0] == 0: self.pos = vals[1] 
         # 7. & 8. Compare
         elif oc == 7 or oc == 8:
-          # Less than
           if oc == 7: self.mem[locs[2]] = 1 if vals[0] < vals[1] else 0
-          # Equal
           elif oc == 8: self.mem[locs[2]] = 1 if vals[0] == vals[1] else 0
         # 9. Change relative base
         elif oc == 9: 
