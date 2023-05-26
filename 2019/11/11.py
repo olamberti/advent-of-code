@@ -31,7 +31,8 @@ class IntCode:
       elif mode == 1: return par
       elif mode == 2: return self.read_mem(par + self.base)
     
-    def get_dir(self, mode, dir):
+    # Read target destination based on mode
+    def get_tar(self, mode, dir):
       if mode == 0: return dir
       elif mode == 2: return dir + self.base
     
@@ -42,11 +43,11 @@ class IntCode:
       for i in range(self.commands[opcode]):
         inst.append(self.read_mem(self.pos + i + 1))
       if opcode in [1, 2, 7, 8]:
-        pars = [self.get_par(modes[0], inst[0]), self.get_par(modes[1], inst[1]), self.get_dir(modes[2], inst[2])]
+        pars = [self.get_par(modes[0], inst[0]), self.get_par(modes[1], inst[1]), self.get_tar(modes[2], inst[2])]
       elif opcode in [5, 6]:
         pars = [self.get_par(modes[0], inst[0]), self.get_par(modes[1], inst[1])]
       elif opcode == 3:
-        pars = [self.get_dir(modes[0], inst[0])]
+        pars = [self.get_tar(modes[0], inst[0])]
       elif opcode in [4, 9]:
         pars = [self.get_par(modes[0], inst[0])]
       elif opcode == 99:
