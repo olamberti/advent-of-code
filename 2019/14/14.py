@@ -23,7 +23,7 @@ def make_fuel(fuel):
     need['FUEL'] = fuel
     ore = 0
 
-    while len(need) != 0:
+    while need:
         product = list(need)[0]
         vol = need[product]
 
