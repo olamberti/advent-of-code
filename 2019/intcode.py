@@ -1,5 +1,3 @@
-memory = [int(x) for x in open('09.txt').read().split(',')]
-
 class IntCode:
     def __init__(self, mem):
       self.mem = {i: val for i, val in enumerate(mem)}  # internal memory as dictionary
@@ -39,7 +37,7 @@ class IntCode:
       elif mode == 2: return par + self.base
         
     # Program run
-    def run(self, inp):
+    def run(self, inp = []):
       while not self.halt:
         # Opcode instruction & modes
         oc, vals, locs = self.get_inst(self.mem[self.pos])
@@ -74,11 +72,3 @@ class IntCode:
         elif oc == 99: 
           self.halt = True
           return None
-
-# P1:
-p1 = IntCode(memory)
-print(p1.run([1]))
-
-# P2:
-p2 = IntCode(memory)
-print(p2.run([2]))
