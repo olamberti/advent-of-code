@@ -1,11 +1,19 @@
+from copy import deepcopy as dp
+
 class IntCode:
-    def __init__(self, mem):
-      self.mem = {i: val for i, val in enumerate(mem)}  # internal memory as dictionary
-      self.pos, self.base, self.halt = 0, 0, False      # position pointer, relative base, program finished
+    def __init__(self, mem, pos = 0, base = 0, halt = False):
+      if type(mem) == list:
+        self.mem = {i: val for i, val in enumerate(mem)}  # convert internal memory as dictionary
+      else:
+        self.mem = mem
+      self.pos, self.base, self.halt = pos, base, halt    # position pointer, relative base, program finished
       self.commands = {1: 3, 2: 3, 3: 1, 4: 1, 5: 2, 6: 2, 7: 3, 8: 3, 9: 1, 99: 0}
     
-    # ----- Class methods ------
+    def copy(self):
+      return IntCode(dp(self.mem), self.pos, self.base, self.halt)
     
+    # ----- IntCode methods ------
+
     # Read memory:
     def read_mem(self, n):
         return self.mem[n] if n in self.mem else 0
@@ -38,6 +46,9 @@ class IntCode:
         
     # Program run
     def run(self, inp = []):
+      if type(inp) is list: pass
+      else: inp = [inp]
+
       while not self.halt:
         # Opcode instruction & modes
         oc, vals, locs = self.get_inst(self.mem[self.pos])

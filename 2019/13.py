@@ -20,9 +20,9 @@ while not game.halt:
     if padX == ballX: joystick = 0
     elif padX < ballX: joystick = 1
     else: joystick = -1
-  x = game.run([joystick])
-  y = game.run([joystick])
-  tileID = game.run([joystick])
+  x = game.run(joystick)
+  y = game.run(joystick)
+  tileID = game.run(joystick)
   if tileID == 4: ballX = x
   elif tileID == 3: padX = x
   elif x == -1 and y == 0: score = tileID

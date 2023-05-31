@@ -28,7 +28,7 @@ for combo in combos:
     for i, ph in enumerate(combo):
       if first: 
         val = amplifiers[i].run([ph, val])
-      else: val = amplifiers[i].run([val])
+      else: val = amplifiers[i].run(val)
     first = False
   thrust = max(thrust, val)
 print(thrust)

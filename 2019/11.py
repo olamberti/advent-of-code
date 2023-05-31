@@ -8,8 +8,8 @@ robot = IntCode(memory)
 while not robot.halt:
   visited.add(tile)
   inp = 1 if tile in whites else 0
-  color = robot.run([inp])
-  turn = robot.run([inp])
+  color = robot.run(inp)
+  turn = robot.run(inp)
   if color == 0 and tile in whites: whites.remove(tile)
   elif color == 1: whites.add(tile)
   if turn == 0: d *= 1j 
@@ -28,8 +28,8 @@ while not robot.halt:
   mx, my = int(min(mx, tile.real)), int(min(my, tile.imag))
   Mx, My = int(max(Mx, tile.real)), int(max(My, tile.imag))
   inp = 1 if tile in whites else 0
-  color = robot.run([inp])
-  turn = robot.run([inp])
+  color = robot.run(inp)
+  turn = robot.run(inp)
   if color == 0 and tile in whites: whites.remove(tile)
   elif color == 1: whites.add(tile)
   if turn == 0: d *= 1j 
