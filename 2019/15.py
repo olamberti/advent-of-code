@@ -25,7 +25,7 @@ while front:
             front.append([new_robot, new_pos, new_steps])
         elif res == 2:
             oxigen = [new_robot, new_pos, new_steps]
-        print(new_steps, ' : ' , new_pos)
+
 print(oxigen[2])
 
-# P2:
+# P2
