@@ -8,7 +8,6 @@ robot = [IntCode(memory), start, 0]   # program, position, steps
 paths.add(start)
 
 front = [robot]
-
 while front:
     current = front.pop(0)
     for inp, dir in dirs.items():
@@ -29,3 +28,18 @@ while front:
 print(oxigen[2])
 
 # P2
+air, start = set(), oxigen[1]
+air.add(start)
+
+front = [[start, 0]]
+while front:
+    current = front.pop(0)
+    for dir in dirs.values():
+        new_pos = current[0] + dir
+        new_steps = current[1] + 1
+
+        if (new_pos in air) or (new_pos in walls): continue
+        elif new_pos in paths:
+            air.add(new_pos)
+            front.append([new_pos, new_steps])
+print(new_steps - 1)
