@@ -12,7 +12,13 @@ def fft(sig):
         out += str(abs(val) % 10)
     return out
 
-# P1
+#P1
+p1 = sig
 for _ in range(100):
-    sig = fft(sig)
-print(sig[:8])
+    p1 = fft(p1)
+print(p1[:8])
+
+#P2
+N = 10_000
+offset = int(sig[:8])
+print(offset)
