@@ -1,9 +1,8 @@
 from intcode import IntCode
-from copy import deepcopy as dp
 memory = [int(x) for x in open('17.txt').read().split(',')]
 
 # P1
-prog, dirs, draw = IntCode(dp(memory)), [1, 1j, -1, -1j], ''
+prog, dirs, draw = IntCode(memory), [1, 1j, -1, -1j], ''
 x, y, scaff = 0, 0, set()
 while not prog.halt:
     out = prog.run()
