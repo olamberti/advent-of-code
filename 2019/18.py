@@ -16,10 +16,10 @@ for y, line in enumerate(open('18.txt').readlines()):
         elif e.islower(): keys[x + y*1j] = e
         elif e.isupper(): doors[x + y*1j] = e
 
-# Create key-to-key distances with doors in the way with BFS
-def get_keys(st):
+# Function to explore all keys and doors with BFS from one postion
+def get_keys(pos):
     front, visited, out = {}, {}, {}
-    front[st] = (0, set())
+    front[pos] = (0, set())
     while front:
         nfront = {}
         for p, [dist, ds] in front.items():
@@ -32,17 +32,16 @@ def get_keys(st):
                 nfront[np] = (ndist, nds)
         front = nfront
     return out
-
+    
+# P1
 k2k = {}
 k2k['@'] = get_keys(start)
 for pos, key in keys.items():
     k2k[key] = get_keys(pos)
 
-# P1
 p1 = float('inf')
 stack, cache = [(0, '@', frozenset())], set()
 heapq.heapify(stack)
-
 while stack:
     dist, pos, mykeys = heapq.heappop(stack)
     if (pos, mykeys) in cache: continue
@@ -60,4 +59,42 @@ while stack:
 print(p1)
 
 # P2
-# to be implemented
+walls.add(start)
+paths.remove(start)
+for d in dirs:
+    walls.add(start + d)
+    paths.remove(start + d)
+robots = {}
+for i, d in enumerate([-1-1j, 1-1j, -1+1j, 1+1j], 1):
+    robots[start + d] = str(i)
+
+k2k = {}
+for pos, rob in robots.items():
+    k2k[rob] = get_keys(pos)
+for pos, key in keys.items():
+    k2k[key] = get_keys(pos)
+
+for i in {}: pass
+
+p2 = float('inf')
+stack, cache = [(0, ('1', '2', '3', '4'), frozenset())], set()
+heapq.heapify(stack)
+while stack:
+    dist, robs, mykeys = heapq.heappop(stack)
+    if (robs, mykeys) in cache: continue
+    if len(mykeys) == len(keys):
+        if dist < p2: p2 = dist
+        continue
+    for r, pos in enumerate(robs):
+        for npos, [ndist, locks] in k2k[pos].items():
+            if npos in mykeys: continue
+            if locks and not all([door.lower() in mykeys for door in locks]): continue
+            nrobs = list(robs)
+            nrobs[r] = npos
+            nrobs = tuple(nrobs)
+            nkeys = set(mykeys)
+            nkeys.add(npos)
+            nkeys = frozenset(nkeys)
+            heapq.heappush(stack, (dist + ndist, nrobs, nkeys))
+    cache.add((robs, mykeys))
+print(p2)
