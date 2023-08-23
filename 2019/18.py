@@ -1,4 +1,3 @@
-from collections import deque
 from copy import deepcopy as dp
 import heapq
 
@@ -39,15 +38,14 @@ k2k['@'] = get_keys(start)
 for pos, key in keys.items():
     k2k[key] = get_keys(pos)
 
-p1 = float('inf')
 stack, cache = [(0, '@', frozenset())], set()
 heapq.heapify(stack)
 while stack:
     dist, pos, mykeys = heapq.heappop(stack)
     if (pos, mykeys) in cache: continue
     if len(mykeys) == len(keys):
-        if dist < p1: p1 = dist
-        continue
+        p1 = dist
+        break
     for npos, [ndist, locks] in k2k[pos].items():
         if npos in mykeys: continue
         if locks and not all([door.lower() in mykeys for door in locks]): continue
@@ -74,17 +72,14 @@ for pos, rob in robots.items():
 for pos, key in keys.items():
     k2k[key] = get_keys(pos)
 
-for i in {}: pass
-
-p2 = float('inf')
 stack, cache = [(0, ('1', '2', '3', '4'), frozenset())], set()
 heapq.heapify(stack)
 while stack:
     dist, robs, mykeys = heapq.heappop(stack)
     if (robs, mykeys) in cache: continue
     if len(mykeys) == len(keys):
-        if dist < p2: p2 = dist
-        continue
+        p2 = dist
+        break
     for r, pos in enumerate(robs):
         for npos, [ndist, locks] in k2k[pos].items():
             if npos in mykeys: continue
