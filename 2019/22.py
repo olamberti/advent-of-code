@@ -6,7 +6,7 @@ N = 10_007
 def get_card(a0, m, n):
     return (a0 + m * n) % N
 
-def EEA(a1, a2): # Extended Euclidean algorithm
+def eea(a1, a2): # Extended Euclidean algorithm
     q = [[a1, 1, 0], [a2, 0, 1]]
     while q[-1][0] != 0:
         d = q[-2][0] // q[-1][0]
@@ -37,7 +37,7 @@ def rev(deck):
 
 def inc(deck, n):
     a0 = deck[0]
-    m = deck[1] * EEA(N, n)
+    m = deck[1] * eea(N, n)
     return(a0, m)
 
 def magic_shuffle(deck, inst):
@@ -61,6 +61,6 @@ S = 101_741_582_076_661
 deck = (0, 1)
 k1, k2 = magic_shuffle(deck, inst)
 
-a0 = ((k1 % N)*((1 - mod_exp(k2, S, N)) * EEA(N, 1 - k2)) % N) % N
+a0 = ((k1 % N)*((1 - mod_exp(k2, S, N)) * eea(N, 1 - k2)) % N) % N
 m = mod_exp(k2, S, N)
 print(get_card(a0, m, 2020))
