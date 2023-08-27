@@ -8,6 +8,7 @@ class IntCode:
         self.mem = mem
       self.pos, self.base, self.halt = pos, base, halt    # position pointer, relative base, program finished
       self.commands = {1: 3, 2: 3, 3: 1, 4: 1, 5: 2, 6: 2, 7: 3, 8: 3, 9: 1, 99: 0}
+      self.input = []
     
     def copy(self):
       return IntCode(dp(self.mem), self.pos, self.base, self.halt)
@@ -45,9 +46,13 @@ class IntCode:
       elif mode == 2: return par + self.base
         
     # Program run
-    def run(self, inp = []):
-      if type(inp) is list: pass
-      else: inp = [inp]
+    def run(self, inp = [], network = False):
+      if network:
+        if type(inp) is list: self.input.extend(inp)
+        else: self.input.append(inp)
+      else:
+        if type(inp) is list: self.input = inp
+        else: self.input = [inp]
 
       while not self.halt:
         # Opcode instruction & modes
@@ -59,7 +64,9 @@ class IntCode:
           elif oc == 2: self.mem[locs[2]] = vals[0] * vals[1]
         # 3. Input instruction
         elif oc == 3:
-          self.mem[locs[0]] = inp.pop(0)
+          if network and self.input == []: self.input.append(-1)
+          self.mem[locs[0]] = self.input.pop(0)
+          if network: return None
         # 4. Output instruction
         elif oc == 4:
           # Check if program is halt:

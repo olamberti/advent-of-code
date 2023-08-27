@@ -1,4 +1,3 @@
-from copy import deepcopy as dp
 from intcode import IntCode
 memory = [int(x) for x in open('02.txt').read().split(',')]
 

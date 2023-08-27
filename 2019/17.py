@@ -8,10 +8,10 @@ while not prog.halt:
     out = prog.run()
     if out:
         draw += chr(out)
-        x += 1
         if out == 35:
             scaff.add(x + y*1j)
-        elif out == 10:
+        x += 1
+        if out == 10:
             x = 0
             y += 1
 
