@@ -18,7 +18,7 @@ beam.add(0 + 0j)
 while len(beam) == 1:
     for x in range(r):
         y = r - x
-        prog = IntCode((memory))
+        prog = IntCode(memory)
         if prog.run([x, y]):
             beam.add(x + y*1j)
             start = x + y*1j

@@ -4,7 +4,7 @@ memory = [int(x) for x in open('23.txt').read().split(',')]
 
 progs, queues, packets, n = [], [], [], 50
 for i in range(n):
-    progs.append(IntCode((memory)))
+    progs.append(IntCode(memory))
     queues.append(deque([i]))
 
 p1, idle = False, 0

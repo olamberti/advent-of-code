@@ -9,7 +9,7 @@ def ascii(inp):
     return asci
 
 def run(code):
-    prog, p = IntCode((memory)), ''
+    prog, p = IntCode(memory), ''
     while not prog.halt:
         out = prog.run(ascii(code))
         if out and out > 127: p = out
