@@ -38,10 +38,9 @@ for id1, reaction in enumerate(cosmos):
         T[id2, id1] += L2 / L1
 
 # Initial state
-start, v = open('10.txt').read(), np.zeros(92)
-if start in elements:
-    id0 = elements[start]
-    v[id0] = cosmos[id0][0]
+v = np.zeros(92)
+id0 = elements[open('10.txt').read()]
+v[id0] = cosmos[id0][0]
 
 T1 = np.linalg.matrix_power(T,40)
 print(int((T1*v).sum()))
