@@ -10,13 +10,6 @@ def next_pass(pw):
     return pw
 
 def check(pw):
-    # Rule 1
-    if 'i' in pw or 'o' in pw or 'l' in pw: return False
-    # Rule 2
-    stop = True
-    for i in range(97,121):
-        if (chr(i) + chr(i + 1) + chr(i + 2)) in pw: stop = False
-    if stop: return False
     # Rule 3
     i, double = 0, 0
     while i < len(pw) - 1:
@@ -26,11 +19,23 @@ def check(pw):
             i += 1
         i += 1
     if double < 2: return False
+    # Rule 1
+    stop = True
+    for i in range(97,121):
+        if (chr(i) + chr(i + 1) + chr(i + 2)) in pw: stop = False
+    if stop: return False
     return True
 
-# P1
+def correct(pw):
+    for i, c in enumerate(pw):
+        if c in 'iol':
+            pw = pw[:i] + inc(pw[i]) + 'a' * (len(pw) - 1 - i)
+            return pw
+    return pw
+
 p1, p2 = False, False
 while not (p1 and p2):
+    correct(pw)
     if check(pw):
         print(pw)
         if p1 and not p2: p2 = True
