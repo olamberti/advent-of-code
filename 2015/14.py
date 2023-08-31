@@ -7,7 +7,9 @@ for line in open('14.txt').readlines():
 
 def dist(par, t):
     v, tv, tr = par
-    return (v * tv) * (t // (tv + tr)) + v * min(t % (tv + tr), tv)
+    return v * (tv * (t // (tv + tr)) + min(t % (tv + tr), tv))
+
+# (v * tv) * (t // (tv + tr)) + v * min(t % (tv + tr), tv)
 
 # P1
 t = 2503

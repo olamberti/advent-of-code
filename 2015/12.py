@@ -9,15 +9,12 @@ inp = 'inp = ' + inp
 exec(inp) # lucky that the input format matches Python's
 
 def nsum(elem):
-    res = 0
     if type(elem) == int: return elem
     elif type(elem) == str: return 0
-    elif type(elem) == list:
-        for e in elem: res += nsum(e)
+    elif type(elem) == list: return sum([nsum(e) for e in elem])
     elif type(elem) == dict:
         if 'red' in elem.values(): return 0
-        else:
-            for e in elem.values(): res += nsum(e)
-    return res
+        else: return sum([nsum(e) for e in elem.values()])
+    return None
 
 print(nsum(inp))
