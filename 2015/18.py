@@ -1,45 +1,36 @@
-dirs, corners = [1 - 1j, 1, 1 + 1j, 1j, - 1 + 1j, -1, -1 -1j, -1j], [0, 99, 99j, 99 + 99j]
-on, off = set(), set()
-for y, line in enumerate(open('18.txt').readlines()):
-    for x, c in enumerate(line.strip()):
-        if c == '.': off.add(x + y *1j)
-        elif c == '#': on.add(x + y *1j)
-on_0, off_0 = on, off
+import numpy as np
+from scipy.ndimage import convolve
+from copy import deepcopy as dp
 
-def corners_on(on, off):
-    for cell in corners:
-        on.add(cell)
-        if cell in off:
-            off.remove(cell)
-    return on, off
+# Read input
+lights = np.zeros((100,100), dtype=np.uint8)
+for x, line in enumerate(open('18.txt').readlines()):
+    for y, c in enumerate(line.strip()):
+        if c == '#': lights[x, y] = 1
+lights_0 = dp(lights)
 
-def anim(on, off):
-    new_on, new_off = set(), set()
-    for cell in on:
-        n = 0
-        for d in dirs:
-            ncell = cell + d
-            if ncell in on: n += 1
-        if n == 2 or n == 3: new_on.add(cell)
-        else: new_off.add(cell)
-    for cell in off:
-        n = 0
-        for d in dirs:
-            ncell = cell + d
-            if ncell in on: n += 1
-        if n == 3: new_on.add(cell)
-        else: new_off.add(cell)
-    return new_on, new_off
+# Convolution for next state
+kernel = np.ones((3,3), dtype=np.uint8)
+kernel[1,1] = 0
+
+def anim(grid):
+    conv = convolve(grid, kernel, mode='constant', cval= 0)
+    return (((grid == 1) & ((conv == 2) | (conv == 3))) | ((grid == 0) & (conv == 3))).astype(np.uint8)
 
 # P1
 for _ in range(100):
-    on, off = anim(on, off)
-print(len(on))
+    lights = anim(lights)
+print(np.sum(lights))
 
 # P2
-on, off = on_0, off_0
+def set_corners(grid):
+    new_lights, (mx, my) = dp(grid), grid.shape
+    new_lights[0,0], new_lights[0,my-1], new_lights[mx-1,0], new_lights[mx-1,my-1] = 1, 1, 1, 1
+    return new_lights
+
+lights = dp(lights_0)
+lights = set_corners(lights)
 for _ in range(100):
-    on, off = corners_on(on, off)
-    on, off = anim(on, off)
-on, off = corners_on(on, off)
-print(len(on))
+    lights = anim(lights)
+    lights = set_corners(lights)
+print(np.sum(lights))
