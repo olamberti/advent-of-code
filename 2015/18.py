@@ -25,7 +25,8 @@ print(np.sum(lights))
 # P2
 def set_corners(grid):
     new_lights, (mx, my) = dp(grid), grid.shape
-    new_lights[0,0], new_lights[0,my-1], new_lights[mx-1,0], new_lights[mx-1,my-1] = 1, 1, 1, 1
+    for x, y in [[0, 0], [0, my-1], [mx-1, 0], [mx-1,my-1]]:
+        new_lights[x, y] = 1
     return new_lights
 
 lights = dp(lights_0)
