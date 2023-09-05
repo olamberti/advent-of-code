@@ -1,5 +1,4 @@
 import re
-from collections import deque as dq
 
 # Read input
 chem, rchem = {}, {}
