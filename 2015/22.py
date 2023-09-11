@@ -16,7 +16,7 @@ def next_state(gamestate, sID, hard = False):
     for t in range(2):
 
         # Hard mode
-        if t == 1 and hard:
+        if t == 0 and hard:
             pHP -= 1
             if pHP == 0: return -1, None
         
