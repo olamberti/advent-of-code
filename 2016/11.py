@@ -29,12 +29,13 @@ def fried(items):
 def next_statuses(status):
     res, e, floors = [], status[0], list([list(f) for f in status[1]])
     for d in [-1, 1]:
-        ne = e + d
+        ne, resd = e + d, []
         if ne < 0 or 3 < ne: continue
         if len(floors[0]) == 0 and ne == 0: continue
         if (len(floors[0]) == 0 and len(floors[1]) == 0) and ne == 1: continue
         items = floors[e]
-        for n in [1, 2]:
+        nums = [1, 2] if d == -1 else [2, 1]
+        for n in nums:
             for take in combinations(items, n):
                 if fried(take): continue
                 nfloors = dp(floors)
@@ -42,7 +43,10 @@ def next_statuses(status):
                     nfloors[e].remove(item)
                     nfloors[ne].append(item)
                 if fried(nfloors[e]) or fried(nfloors[ne]): continue
-                res.append(create_status(ne, nfloors))
+                if d == -1 and n == 2 and resd: continue
+                if d == 1 and n == 1 and resd: continue
+                resd.append(create_status(ne, nfloors))
+        res += resd
     return res
 
 def cache_hash(status):
