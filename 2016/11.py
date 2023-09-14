@@ -14,9 +14,6 @@ for line in open('11.txt').read().splitlines():
         mats.add(mat)
     floors.append(floor)
 
-def create_status(elevator, floors):
-    return (elevator, tuple(tuple(f) for f in floors))
-
 def fried(items):
     if len(items) == 0 or len(items) == 1: return False
     for item in items:
@@ -27,7 +24,7 @@ def fried(items):
     return False
 
 def next_statuses(status):
-    res, e, floors = [], status[0], list([list(f) for f in status[1]])
+    res, e, floors = [], status[0], status[1]
     for d in [-1, 1]:
         ne, resd = e + d, []
         if ne < 0 or 3 < ne: continue
@@ -45,12 +42,12 @@ def next_statuses(status):
                 if fried(nfloors[e]) or fried(nfloors[ne]): continue
                 if d == -1 and n == 2 and resd: continue
                 if d == 1 and n == 1 and resd: continue
-                resd.append(create_status(ne, nfloors))
+                resd.append((ne, nfloors))
         res += resd
     return res
 
 def cache_hash(status):
-    res, pairs, e, floors = set(), {}, status[0], list([list(f) for f in status[1]])
+    res, pairs, e, floors = set(), {}, status[0], status[1]
     for mat in mats: pairs[mat] = [None, None]
     for i, floor in enumerate(floors):
         for item in floor:
@@ -74,9 +71,9 @@ def min_steps(start):
             stack.append([steps, nstatus])
 
 # P1
-print(min_steps(create_status(0, floors)))
+print(min_steps((0, floors)))
 
 # P2
 floors[0] += ['ElG', 'ElM', 'DiG', 'DiM']
 mats.add('El'), mats.add('Di')
-print(min_steps(create_status(0, floors)))
+print(min_steps((0, floors)))
