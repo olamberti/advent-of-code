@@ -1,10 +1,11 @@
+import math
 n = int(open('19.txt').read())
 
-class Chain():
-    def __init__(self, val):
-        self.val = val
-        self.prev = None
-        self.next = None
 
 # P1
-elves = [x for x in range(1, n+1)]
+print(int('0b' + bin(n)[3:] + '1', 2))
+
+# P2
+t = int(pow(3, math.floor(math.log(n, 3))))
+if n < t * 2: print(n - t)
+else: print(2 * n - 3 * t)
