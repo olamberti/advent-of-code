@@ -35,6 +35,6 @@ while stack:
         if len(nvis) == len(points):
             p1 = min(nsteps, p1)
             p2 = min(nsteps + dists[npos][0], p2)
-        heapq.heappush(stack, (nsteps, npos, nvis))
+        else: heapq.heappush(stack, (nsteps, npos, nvis))
 print(p1)
 print(p2)
