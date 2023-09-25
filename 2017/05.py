@@ -12,6 +12,5 @@ def run(input, p2 = False):
         steps += 1
     return(steps)
 
-
 print(run(data))
 print(run(data, True))
