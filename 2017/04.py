@@ -4,7 +4,8 @@ for line in open('04.txt').read().splitlines():
     for w in phrase:
         words.add(w)
         ans.add(''.join(sorted(w)))
-    if len(words) == len(phrase): p1 += 1
-    if len(ans) == len(phrase): p2 += 1
+    if len(words) == len(phrase):
+        p1 += 1
+        if len(ans) == len(phrase): p2 += 1
 print(p1)
 print(p2)
