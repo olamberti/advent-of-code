@@ -1,4 +1,5 @@
 import re
+import statistics
 
 towers = {}
 for line in open('07.txt').read().splitlines():
@@ -16,4 +17,17 @@ for tower, elems in towers.items():
         break
 
 # P2
-# TODO: balancing towers
+def wsum(t):
+    res = towers[t][0] + sum([wsum(ch) for ch in towers[t][2]])
+    towers[t].append(res)
+    return res
+
+def balance(t, target = None):
+    weights = [towers[ch][3] for ch in towers[t][2]]
+    med = statistics.median(weights)
+    for ch in towers[t][2]:
+        if towers[ch][3] != med: return balance(ch, med)
+    return towers[t][0] - (towers[t][3] - target)
+
+wsum(tower)
+print(balance(tower))
