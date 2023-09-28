@@ -19,7 +19,7 @@ def round(c, i, ss, ls):
 c, _, _ = round(c, 0, 0, lengths)
 print(c[0] * c[1])
 
-# P2
+# P2 - TODO: find and correct bug
 def knothash(s):
     c, lengths, i, ss = [i for i in range(256)], [ord(x) for x in s] + [17, 31, 73, 47, 23], 0, 0
     for _ in range(64):
