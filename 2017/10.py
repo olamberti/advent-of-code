@@ -21,19 +21,19 @@ print(c[0] * c[1])
 
 # P2 - TODO: find and correct bug
 def knothash(s):
+    # Do rounds
     c, lengths, i, ss = [i for i in range(256)], [ord(x) for x in s] + [17, 31, 73, 47, 23], 0, 0
     for _ in range(64):
         c, i, ss = round(c, i, ss, lengths)
-
+    # Sparse hash
     dh = []
     for i in range(16):
         t = c[16 * i]
-        for j in range(15): t = t ^ c[16 * i + j]
+        for j in range(15): t = t ^ c[16 * i + j + 1]
         dh.append(t)
-    
+    # Convert to hexa
     res = ''
-    for x in dh:
-        res += hex(x)[2:].zfill(2)
+    for x in dh: res += hex(x)[2:].zfill(2)
     return res
 
-print(knothash('AoC 2015'))
+print(knothash(inp))
