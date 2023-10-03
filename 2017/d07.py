@@ -2,7 +2,7 @@ import re
 import statistics
 
 towers = {}
-for line in open('07.txt').read().splitlines():
+for line in open('d07.txt').read().splitlines():
     f, ch = re.findall(r'(\w+) \((\d+)', line)[0], re.findall(r' (\w+)', line)
     towers[f[0]] = [int(f[1]), None, ch]
 

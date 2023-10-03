@@ -1,4 +1,4 @@
-data = open('09.txt').read()
+data = open('d09.txt').read()
 
 i, lvl, garbage, p1, p2 = 0, 0, False, 0, 0
 while i < len(data):

@@ -1,4 +1,4 @@
-data = open('11.txt').read().split(',')
+data = open('d11.txt').read().split(',')
 
 dirs = {'n':(1,-1,0), 'ne':(1,0,-1), 'se':(0,1,-1), 's':(-1,1,0), 'sw':(-1,0,1), 'nw':(0,-1,1)}
 pos, p2 = (0,0,0), 0

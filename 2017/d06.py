@@ -1,4 +1,4 @@
-data = [int(x) for x in open('06.txt').read().split()]
+data = [int(x) for x in open('d06.txt').read().split()]
 
 states, ndata, steps = {}, tuple(data), 0
 while ndata not in states:

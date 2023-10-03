@@ -1,5 +1,5 @@
 fw = {}
-for line in open('13.txt').read().splitlines(0):
+for line in open('d13.txt').read().splitlines(0):
     d, r = [int(x) for x in line.split(': ')]
     fw[d] = r
 

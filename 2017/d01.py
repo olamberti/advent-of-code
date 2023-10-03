@@ -1,4 +1,4 @@
-inp = [int(x) for x in open('01.txt').read()]
+inp = [int(x) for x in open('d01.txt').read()]
 
 # P1
 p1, p2 = 0, 0

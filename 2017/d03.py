@@ -1,4 +1,4 @@
-inp = int(open('03.txt').read())
+inp = int(open('d03.txt').read())
 
 # P1
 def p1(inp):

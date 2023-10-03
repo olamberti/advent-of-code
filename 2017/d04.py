@@ -1,5 +1,5 @@
 p1, p2 = 0, 0
-for line in open('04.txt').read().splitlines():
+for line in open('d04.txt').read().splitlines():
     words, ans, phrase = set(), set(), line.split()
     for w in phrase:
         words.add(w)

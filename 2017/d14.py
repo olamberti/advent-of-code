@@ -1,4 +1,4 @@
-inp, size = open('14.txt').read(), 128
+inp, size = open('d14.txt').read(), 128
 
 # Knothash functions from day 10
 def round(c, i, ss, ls):

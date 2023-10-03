@@ -1,7 +1,7 @@
 import re
 
 p1, p2 = 0, 0
-for line in open('02.txt').read().splitlines():
+for line in open('d02.txt').read().splitlines():
     v = [int(x) for x in re.findall('\d+', line)]
     p1 += max(v) - min(v)
     for a in v:

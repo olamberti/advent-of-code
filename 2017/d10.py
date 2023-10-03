@@ -1,5 +1,5 @@
 # P1
-inp = open('10.txt').read()
+inp = open('d10.txt').read()
 c, lengths = [i for i in range(256)], [int(x) for x in inp.split(',')]
 
 def round(c, i, ss, ls):

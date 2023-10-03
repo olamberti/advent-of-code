@@ -10,7 +10,7 @@ def inc_val(x, k):
     if x not in regs: regs[x] = k
     else: regs[x] += k
 
-for line in open('08.txt').read().splitlines():
+for line in open('d08.txt').read().splitlines():
     r1, c, v, r2, cond = re.findall(r'(\w+) (\w+) (-?\d+) if (\w+)(.*)', line)[0]
     v = int(v) * coms[c]
     if eval(str(get_val(r2)) + cond): inc_val(r1, v)

@@ -1,5 +1,5 @@
 from copy import deepcopy as dp
-data = [int(x) for x in open('05.txt').read().splitlines()]
+data = [int(x) for x in open('d05.txt').read().splitlines()]
 
 def run(input, p2 = False):
     data = dp(input)
