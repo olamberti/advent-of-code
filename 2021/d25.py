@@ -1,6 +1,6 @@
 # Read input:
 east, south = set(), set()
-grid = open('25.txt', 'r').read().splitlines()
+grid = open('d25.txt', 'r').read().splitlines()
 for r, row in enumerate(grid):
   for c, char in enumerate(row):
     if char == '>': east.add((r + c * 1j))

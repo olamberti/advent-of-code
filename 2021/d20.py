@@ -1,5 +1,5 @@
 # Read input:
-data = open('20.txt', 'r').read().splitlines()
+data = open('d20.txt', 'r').read().splitlines()
 iea = data[0]   # imnage enhancement algorithm
 img = data[2:]  # image
 edge = '.'      # points in the infinite, handled as edge

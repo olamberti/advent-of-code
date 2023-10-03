@@ -1,5 +1,5 @@
 # Read data
-with open("03.txt", "r") as input:
+with open("d03.txt", "r") as input:
   data = input.read().splitlines()
 
 # Decimal calculator

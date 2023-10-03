@@ -1,4 +1,4 @@
-with open("01.txt") as input:
+with open("d01.txt") as input:
   text = input.read()
 data = [int(x) for x in text.splitlines()]
 number_of_increase = 0

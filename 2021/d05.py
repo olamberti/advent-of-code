@@ -1,6 +1,6 @@
 # Start-up definitions and data read
 import numpy as np
-with open('05.txt', 'r') as input:
+with open('d05.txt', 'r') as input:
   text = input.read().splitlines()
 
 data = []

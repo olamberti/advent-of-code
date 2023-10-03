@@ -18,7 +18,7 @@
 # we can calculate each digitaccording to part 1 or part 2.
 ##############################################################################################
 # Read input:
-inp = open('24.txt', 'r').read().splitlines() # read input line by line
+inp = open('d24.txt', 'r').read().splitlines() # read input line by line
 
 # Process MONAD parameters:
 p = []                                 # parameters list

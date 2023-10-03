@@ -1,5 +1,5 @@
 # Read input:
-with open('07.txt', 'r') as input:
+with open('d07.txt', 'r') as input:
   positions = [int(x) for x in input.read().split(',')]
 
 # Part 1 - Calculate median:

@@ -1,6 +1,6 @@
 # Read input:
 data = []
-for line in open('19.txt', 'r'):
+for line in open('d19.txt', 'r'):
   line = line.strip()
   if 'scanner' in line:          # if we have a new scanner
     i = int(line.split()[2])     # read scanner id

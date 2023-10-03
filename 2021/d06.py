@@ -1,5 +1,5 @@
 # Read input
-with open('06.txt', 'r') as input:
+with open('d06.txt', 'r') as input:
   fishes = [int(x) for x in input.read().split(',')]
 
 # Simulation:

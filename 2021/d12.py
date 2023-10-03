@@ -1,7 +1,7 @@
 # Read input
 cons = {}
 
-for line in open('12.txt', 'r'):
+for line in open('d12.txt', 'r'):
   ab = line.strip().split('-')
   a, b = ab[0], ab[1]
   if a not in cons: cons[a] = []

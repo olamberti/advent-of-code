@@ -1,6 +1,6 @@
 # Read input:
 import numpy as np
-with open("04.txt") as input:
+with open("d04.txt") as input:
   data = input.read().splitlines()
 numbers = data[0].split(",")
 data = [line.split() for line in data[2:]]

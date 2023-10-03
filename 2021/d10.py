@@ -3,7 +3,7 @@ values = {')':3, ']':57, '}':1197, '>':25137}
 
 total, scores = 0, []
 
-for line in open('10.txt', 'r').read().splitlines():
+for line in open('d10.txt', 'r').read().splitlines():
   stack = []
   for c in line:
     if c in pairs: stack.append(c)

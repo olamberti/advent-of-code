@@ -1,5 +1,5 @@
 # Read in data:
-with open('09.txt', 'r') as input:
+with open('d09.txt', 'r') as input:
   data = [[int(x) for x in sublist] for sublist in [list(line) for line in input.read().splitlines()]]
 
 # Functions:

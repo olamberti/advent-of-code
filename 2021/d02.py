@@ -1,4 +1,4 @@
-with open("02.txt", "r") as input:
+with open("d02.txt", "r") as input:
   text = input.read()
   data = text.splitlines()
 horizontal = 0

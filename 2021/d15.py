@@ -1,6 +1,6 @@
 # Read input
 risks = []
-for line in open('15.txt','r'):
+for line in open('d15.txt','r'):
   row = [int(x) for x in line.strip()]
   risks.append(row)
 h1, w1 = len(risks), len(risks[0])

@@ -1,7 +1,7 @@
 # Read input
 from copy import deepcopy as dp
 
-with open('14.txt') as input:
+with open('d14.txt') as input:
   data = input.read().splitlines()
 
 temp, rules, pairs, elems = data[0], {}, {}, {}

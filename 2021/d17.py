@@ -1,6 +1,6 @@
 # Read input
 import math
-data = open('17.txt', 'r').read().split()
+data = open('d17.txt', 'r').read().split()
 x = [int(n) for n in data[2].strip('x=,').split('..')]
 y = [int(n) for n in data[3].strip('y=,').split('..')]
 mx, Mx, my, My = min(x), max(x), min(y), max(y)

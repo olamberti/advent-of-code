@@ -1,6 +1,6 @@
 # Read input:
 steps = []                                                                            # storing procedure steps
-for line in open('22.txt', 'r').read().splitlines():                                      # iterate through input data
+for line in open('d22.txt', 'r').read().splitlines():                                 # iterate through input data
   command, coords = line.split()                                                      # on/off, coordinates
   x, y, z = [c[2:].split('..') for c in coords.split(',')]                            # read coordinate pairs
   x, y, z = [int(x[0]), int(x[1])], [int(y[0]), int(y[1])], [int(z[0]), int(z[1])]    # convert them to integers

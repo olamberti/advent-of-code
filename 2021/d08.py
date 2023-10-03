@@ -1,5 +1,5 @@
 # Read input:
-with open('08.txt', 'r') as input:
+with open('d08.txt', 'r') as input:
   text = input.read().splitlines()
 
 # Function definitions:

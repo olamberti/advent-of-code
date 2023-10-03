@@ -1,5 +1,5 @@
 # Input:
-data = open('21.txt', 'r').read().splitlines()
+data = open('d21.txt', 'r').read().splitlines()
 pos = [int(data[0][-1]), int(data[1][-1])]  # starting positions
 table = [x for x in range(1, 11)]
 

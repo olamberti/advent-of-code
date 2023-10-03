@@ -2,7 +2,7 @@
 part = 1
 
 # Read input:
-lines = open('23.txt', 'r').read().splitlines()                            # read input lines 
+lines = open('d23.txt', 'r').read().splitlines()                       # read input lines 
 
 # Build up map:
 corr = list(lines[1][1:-1])                                            # representation of corridor

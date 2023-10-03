@@ -1,5 +1,5 @@
 # Read and convert input
-hexa = open('16.txt', 'r').read()
+hexa = open('d16.txt', 'r').read()
 bits = ''.join([bin(int(x, 16))[2:].zfill(4) for x in hexa])
 
 # Parse function

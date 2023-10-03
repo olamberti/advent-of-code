@@ -1,5 +1,5 @@
 grid = []
-for line in open('11.txt'):
+for line in open('d11.txt'):
   row = [int(num) for num in line.strip()]
   grid.append(row)
 

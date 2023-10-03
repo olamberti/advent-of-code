@@ -2,7 +2,7 @@ dots, folds = set(), []
 
 # Read input
 is_dot = True
-for line in open('13.txt', 'r'):
+for line in open('d13.txt', 'r'):
   line = line.strip()
   if line == '':
     is_dot = False

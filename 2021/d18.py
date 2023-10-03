@@ -5,7 +5,7 @@ def convert(x):                     # converts everything to list type
   if type(x) is int: return [x]     # if integer, return one element list
   return [convert(y) for y in x]    # recursion
 
-for line in open('18.txt', 'r'):   # read input file
+for line in open('d18.txt', 'r'):   # read input file
   data.append(convert(eval(line)))  # add converted lines to data
 
 # Functions:
