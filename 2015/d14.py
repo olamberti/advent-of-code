@@ -2,7 +2,7 @@ import re
 
 # Read input
 data = {}
-for line in open('14.txt').readlines():
+for line in open('d14.txt').readlines():
     data[line.split(' ')[0]] = [int(x) for x in re.findall(r'\d+', line)]
 
 def dist(par, t):

@@ -2,7 +2,7 @@ import itertools
 
 # Read input
 happ = {}
-for line in open('13.txt').readlines():
+for line in open('d13.txt').readlines():
     line = line.strip().split(' ')
     a, b, val = line[0][0], line[-1][0], int(line[3])
     if line[2] == 'lose': val *= -1

@@ -2,7 +2,7 @@ import numpy as np
 
 lights_1 = np.zeros((1000, 1000), dtype=bool)
 lights_2 = np.zeros((1000, 1000), dtype=int)
-for line in open('06.txt').readlines():
+for line in open('d06.txt').readlines():
     line = line.strip().split(' ')
     i = line.index('through')
     x1, y1 = [int(i) for i in line[i - 1].split(',')]

@@ -2,7 +2,7 @@ import re
 
 # Read input
 chem, rchem = {}, {}
-for line in open('19.txt').readlines():
+for line in open('d19.txt').readlines():
     if ' => ' in line:
         a, b = line.strip().split(' => ')
         if a not in chem: chem[a] = []

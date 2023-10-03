@@ -1,7 +1,7 @@
 import re
 
 # P1
-inp = open('12.txt').read()
+inp = open('d12.txt').read()
 print(sum([int(s) for s in re.findall('-?\d+', inp)]))
 
 # P2

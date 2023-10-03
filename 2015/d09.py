@@ -2,7 +2,7 @@ import itertools
 from collections import deque as dq
 
 dists = {}
-for line in open('09.txt').readlines():
+for line in open('d09.txt').readlines():
     line = line.strip().split(' ')
     a, b, d = line[0], line[2], int(line[-1])
     if a not in dists.keys(): dists[a] = {}

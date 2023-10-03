@@ -1,4 +1,4 @@
-pw = open('11.txt').read()
+pw = open('d11.txt').read()
 
 def inc(c):
     return chr((ord(c) - 96) % 26 + 97)

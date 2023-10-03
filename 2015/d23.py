@@ -1,5 +1,5 @@
 prog = []
-for line in open('23.txt').readlines():
+for line in open('d23.txt').readlines():
     prog.append(line.strip())
 
 def run(prog, a, b):

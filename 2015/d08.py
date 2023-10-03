@@ -16,7 +16,7 @@ def part2(s):
     return 2 + s.count('\"') + s.count('\\')
         
 p1, p2 = 0, 0
-for line in open('08.txt').readlines():
+for line in open('d08.txt').readlines():
     p1 += part1(line.strip())
     p2 += part2(line.strip())
 print(p1)

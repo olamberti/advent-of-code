@@ -4,7 +4,7 @@ from copy import deepcopy as dp
 
 # Read input
 lights = np.zeros((100,100), dtype=np.uint8)
-for x, line in enumerate(open('18.txt').readlines()):
+for x, line in enumerate(open('d18.txt').readlines()):
     for y, c in enumerate(line.strip()):
         if c == '#': lights[x, y] = 1
 lights_0 = dp(lights)

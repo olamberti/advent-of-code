@@ -1,7 +1,7 @@
 import math
 from itertools import combinations
 
-presents = [int(x) for x in open('24.txt').readlines()]
+presents = [int(x) for x in open('d24.txt').readlines()]
 
 def balance(n):
     s, t = 1, sum(presents) // n

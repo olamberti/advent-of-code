@@ -2,7 +2,7 @@ import sympy
 import math
 import numpy as np
 
-lim = int(open('20.txt').read())
+lim = int(open('d20.txt').read())
 
 # Theory based on https://en.wikipedia.org/wiki/Divisor_function
 def ub(n):

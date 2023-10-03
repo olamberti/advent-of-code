@@ -1,6 +1,6 @@
 import hashlib
 
-inp, p1, p2 =  open('04.txt').read(), None, None
+inp, p1, p2 =  open('d04.txt').read(), None, None
 hash, x = inp, 0
 while not (p1 and p2):
     x += 1

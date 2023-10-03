@@ -1,5 +1,5 @@
 p1, p2 = 0, 0
-for line in open('02.txt'):
+for line in open('d02.txt'):
     sizes = [int(x) for x in line.strip().split('x')]
     sizes.sort()
     a, b, c = sizes

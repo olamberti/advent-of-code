@@ -3,7 +3,7 @@ from itertools import combinations
 
 # Init:
 boss = [0, 0, 0]
-for line in open('21.txt').readlines():
+for line in open('d21.txt').readlines():
     line = line.strip().split(' ')
     if line[0] == 'Hit': boss[0] = int(line[-1])
     elif line[0] == 'Damage:': boss[1] = int(line[-1])

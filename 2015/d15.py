@@ -2,7 +2,7 @@ import re
 import numpy as np
 
 data = []
-for line in open('15.txt').readlines():
+for line in open('d15.txt').readlines():
     data.append(re.findall(r'-?\d+', line))
 data = np.array(data, dtype='int32')
 data = data.T

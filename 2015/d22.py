@@ -2,7 +2,7 @@ import heapq as hq
 
 # Init
 player, boss, effects = [50, 500], [0, 0], [0, 0, 0] # [HP, mana], [HP, damage], [shield, poison, recharge]
-for line in open('22.txt').readlines():
+for line in open('d22.txt').readlines():
     line = line.strip().split(' ')
     if line[0] == 'Hit': boss[0] = int(line[-1])
     elif line[0] == 'Damage:': boss[1] = int(line[-1])

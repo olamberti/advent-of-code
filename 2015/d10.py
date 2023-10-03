@@ -39,7 +39,7 @@ for id1, reaction in enumerate(cosmos):
 
 # Initial state
 v = np.zeros(92)
-id0 = elements[open('10.txt').read()]
+id0 = elements[open('d10.txt').read()]
 v[id0] = cosmos[id0][0]
 
 T1 = np.linalg.matrix_power(T,40)

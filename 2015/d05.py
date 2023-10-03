@@ -32,7 +32,7 @@ def is_nice_p2(s):
     return False
 
 p1, p2 = 0, 0
-for line in open('05.txt').readlines():
+for line in open('d05.txt').readlines():
     if is_nice_p1(line.strip()): p1 += 1
     if is_nice_p2(line.strip()): p2 += 1
 print(p1)

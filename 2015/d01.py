@@ -1,4 +1,4 @@
-inp = open('01.txt').read()
+inp = open('d01.txt').read()
 
 # P1
 print(inp.count('(') - inp.count(')'))

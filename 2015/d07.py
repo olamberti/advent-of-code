@@ -50,7 +50,7 @@ def sim(insts):
 
 # P1
 insts = []
-for line in open('07.txt').readlines():
+for line in open('d07.txt').readlines():
     line = line.strip().split(' ')
     insts.append(line)
 

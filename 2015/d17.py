@@ -1,7 +1,7 @@
 import itertools
 
 data = {}
-for i, x in enumerate(open('17.txt').readlines()):
+for i, x in enumerate(open('d17.txt').readlines()):
     data[chr(i + 97)] = int(x)
 
 p1, p2, minN = 0, 0, 999

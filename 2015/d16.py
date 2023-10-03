@@ -14,7 +14,7 @@ def checkline(line, part2 = False):
     return True
 
 p1, p2 = 0, 0
-for i, line in enumerate(open('16.txt').readlines()):
+for i, line in enumerate(open('d16.txt').readlines()):
     if checkline(line): p1 = i + 1
     if checkline(line, True): p2 = i + 1
     if p1 and p2: break
