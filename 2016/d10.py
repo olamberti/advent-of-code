@@ -1,7 +1,7 @@
 import re
 bots, rules, outputs = {}, {}, {}
 
-for line in open('10.txt').read().splitlines():
+for line in open('d10.txt').read().splitlines():
     p = [int(x) for x in re.findall(r'\d+', line)]
     if 'value' in line:
         if p[1] in bots: bots[p[1]].append(p[0])

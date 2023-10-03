@@ -1,4 +1,4 @@
-todo = open('01.txt').read().split(', ')
+todo = open('d01.txt').read().split(', ')
 pos, dir, turn, locs, p2 = 0, 1j, {'L': 1j, 'R': -1j}, set(), None
 
 def dist(x):

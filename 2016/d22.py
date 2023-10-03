@@ -1,6 +1,6 @@
 import re
 
-inp, nodes = open('22.txt').read().splitlines(), {}
+inp, nodes = open('d22.txt').read().splitlines(), {}
 for line in inp[2:]:
     p = [int(x) for x in re.findall(r'\d+', line)[:4]]
     nodes[(p[0], p[1])] = [p[2], p[3]]

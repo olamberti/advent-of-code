@@ -1,5 +1,5 @@
 inst = []
-for line in open('25.txt').read().splitlines():
+for line in open('d25.txt').read().splitlines():
     inst.append(line.split())
 
 def get_val(x, regs):

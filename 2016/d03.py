@@ -3,7 +3,7 @@ def tri(a, b, c):
     return a + b > c
 
 p1, p2 = 0, 0
-for i, line in enumerate(open('03.txt').read().splitlines()):
+for i, line in enumerate(open('d03.txt').read().splitlines()):
     if i % 3 == 0: A, B, C = [], [], []
     a, b, c = [int(x) for x in line.strip().split()]
     if tri(a, b, c): p1 += 1

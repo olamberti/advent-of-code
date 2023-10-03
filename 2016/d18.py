@@ -1,5 +1,5 @@
 grid = []
-grid.append(open('18.txt').read())
+grid.append(open('d18.txt').read())
 
 safe = grid[0].count('.')
 while len(grid) < 400_000:

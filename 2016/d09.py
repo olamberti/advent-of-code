@@ -1,4 +1,4 @@
-inp = open('09.txt').read()
+inp = open('d09.txt').read()
 
 def decomp(s, p2 = False):
     if '(' not in s: return len(s)

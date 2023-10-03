@@ -1,6 +1,6 @@
 p1, prog = {'a':0, 'b':0, 'c':0, 'd':0}, []
 
-for line in open('12.txt').read().splitlines():
+for line in open('d12.txt').read().splitlines():
     prog.append(line.split())
 
 def run(regs):

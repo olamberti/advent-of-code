@@ -2,7 +2,7 @@ from copy import deepcopy as dp
 import math
 
 inst = []
-for line in open('23.txt').read().splitlines():
+for line in open('d23.txt').read().splitlines():
     inst.append(line.split())
 
 def get_val(x, regs):

@@ -1,5 +1,5 @@
 import hashlib
-dID = open('05.txt').read()
+dID = open('d05.txt').read()
 
 i, p1, p2 = 0, '', ['?']*8
 while len(p1) < 8 or '?' in p2:

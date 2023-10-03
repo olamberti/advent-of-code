@@ -1,5 +1,5 @@
 from copy import deepcopy as dp
-inst = open('21.txt').read().splitlines()
+inst = open('d21.txt').read().splitlines()
 
 def swappos(s, x, y):
     s[x], s[y] = s[y], s[x]

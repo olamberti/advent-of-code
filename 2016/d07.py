@@ -13,7 +13,7 @@ def ssl(sn, hn):
     return False
 
 p1, p2 = 0, 0
-for line in open('07.txt').read().splitlines():
+for line in open('d07.txt').read().splitlines():
     parts = re.split(r'\[(\w+)\]', line)
     sn, hn = '-'.join(parts[0::2]), '-'.join(parts[1::2])
     if not abba(hn) and abba(sn): p1 += 1

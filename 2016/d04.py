@@ -2,7 +2,7 @@ def shift(c, n):  # (a - 97, z - 122)
     return chr((ord(c) - 97 + n) % 26 + 97)
 
 p1, p2 = 0, None
-for line in open('04.txt').read().splitlines():
+for line in open('d04.txt').read().splitlines():
     line = line.strip().split('-')
     name = line[:-1]
     sID, check = line[-1].split('[')

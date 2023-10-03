@@ -1,7 +1,7 @@
 import heapq
 # Read input
 walls, points, dirs = set(), {}, [1, -1, 1j, -1j]
-for y, line in enumerate(open('24.txt').read().splitlines()):
+for y, line in enumerate(open('d24.txt').read().splitlines()):
     for x, c in enumerate(line):
         if c == '#': walls.add(x + y*1j)
         elif c == '0': start = x + y*1j

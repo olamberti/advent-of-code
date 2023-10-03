@@ -1,6 +1,6 @@
 import hashlib
 import re
-salt = open('14.txt').read()
+salt = open('d14.txt').read()
 
 def solve(salt, nhash = 1):
     keys, i, triplets = [], 0, {}

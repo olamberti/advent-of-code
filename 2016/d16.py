@@ -1,4 +1,4 @@
-data = open('16.txt').read()
+data = open('d16.txt').read()
 
 def fill(a):
     b = ''.join(['0' if x == '1' else '1' for x in a[::-1]])

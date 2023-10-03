@@ -1,5 +1,5 @@
 data = []
-for line in open('20.txt').read().splitlines():
+for line in open('d20.txt').read().splitlines():
     x, y = line.split('-')
     data.append((int(x), int(y)))
 data.sort()

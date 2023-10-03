@@ -5,7 +5,7 @@ from collections import deque as dq
 
 # Init
 floors, mats = [], set()
-for line in open('11.txt').read().splitlines():
+for line in open('d11.txt').read().splitlines():
     floor = []
     items = re.findall(r' (\w+|\w+-compatible) (microchip|generator)', line)
     for m, t in items:

@@ -6,7 +6,7 @@ keypad = np.array([[1,2,3],
                    [4,5,6],
                    [7,8,9]])
 r, c, code = 1, 1, ''
-for line in open('02.txt').read().splitlines():
+for line in open('d02.txt').read().splitlines():
     line = line.strip()
     for m in line:
         if m == 'L' or m == 'R':

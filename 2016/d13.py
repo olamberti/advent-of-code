@@ -1,4 +1,4 @@
-fn = int(open('13.txt').read())
+fn = int(open('d13.txt').read())
 dirs = [1, -1, 1j, -1j]
 
 def isopen(z):

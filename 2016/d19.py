@@ -1,5 +1,5 @@
 import math
-n = int(open('19.txt').read())
+n = int(open('d19.txt').read())
 
 # P1
 print(int('0b' + bin(n)[3:] + '1', 2))

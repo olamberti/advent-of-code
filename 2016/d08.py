@@ -4,7 +4,7 @@ import re
 # P1
 w, h = 50, 6
 screen = np.zeros((h, w))
-for line in open('08.txt').read().splitlines():
+for line in open('d08.txt').read().splitlines():
     p = [int(x) for x in re.findall(r'\d+', line)]
     if line.split()[0] == 'rect': screen[:p[1], :p[0]] = 1
     else:

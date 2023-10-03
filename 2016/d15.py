@@ -1,7 +1,7 @@
 import re
 
 discs = []
-for line in open('15.txt').read().splitlines():
+for line in open('d15.txt').read().splitlines():
     p = [int(x) for x in re.findall(r'(\d+)', line)]
     discs.append((p[1], -(p[0] + p[3]) % p[1]))
 
