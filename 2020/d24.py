@@ -1,7 +1,7 @@
 black, dirs = set(), {'e':2, 'se':1+1j, 'ne':1-1j, 'w':-2, 'sw':-1+1j, 'nw':-1-1j}
 
 # P1
-for line in open('24.txt').read().splitlines():
+for line in open('d24.txt').read().splitlines():
   line = line.replace('e', 'e ')
   line = line.replace('w', 'w ')
   tile = 0

@@ -1,7 +1,7 @@
 # Create grid:
 emp, occ = set(), set()
 dirs = [-1 - 1j, -1, -1 + 1j, -1j, 1j, 1 - 1j, 1, 1 + 1j]
-for r, line in enumerate(open('11.txt').read().splitlines()):
+for r, line in enumerate(open('d11.txt').read().splitlines()):
   for c, char in enumerate(line):
     if char == 'L': emp.add(r + c * 1j)
 

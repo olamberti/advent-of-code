@@ -1,5 +1,5 @@
 # Parse
-lines = open('13.txt').read().split()
+lines = open('d13.txt').read().split()
 t = int(lines[0])
 bs = [int(x) for x in lines[1].split(',') if x.isnumeric()]
 

@@ -1,7 +1,7 @@
 # Input:
 ran, tic, prt = {}, [], 1
 
-for lin in open('16.txt').read().splitlines():
+for lin in open('d16.txt').read().splitlines():
   if lin == '': 
     prt += 1
     continue

@@ -1,5 +1,5 @@
 # Input parsing:
-inp = open('17.txt').read().splitlines()
+inp = open('d17.txt').read().splitlines()
 act3, act4 = set(), set()
 
 for x, l in enumerate(inp):

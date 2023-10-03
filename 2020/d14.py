@@ -23,7 +23,7 @@ def p2(add, mask):
       res = res_
   return [int(''.join(x), 2) for x in res]  
     
-for l in open('14.txt').read().splitlines():
+for l in open('d14.txt').read().splitlines():
   c, v = l.split(' = ')
   if c == 'mask': m = v
   else:

@@ -43,7 +43,7 @@ class Tile():
       
 #1 Input processing:
 tiles, edges, pic = [], {}, []
-for line in open('20.txt').read().splitlines():
+for line in open('d20.txt').read().splitlines():
   psize = len(line)
   if 'Tile' in line: id = int(line.split()[1].strip(':'))
   elif line == '': continue

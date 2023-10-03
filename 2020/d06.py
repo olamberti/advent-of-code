@@ -5,7 +5,7 @@ def gen_a2():
   return a2
 
 q1, q2, a1, a2 = 0, 0, set(), gen_a2()
-inp = open('06.txt').read().splitlines()
+inp = open('d06.txt').read().splitlines()
 for i, line in enumerate(inp, 1):
   if line != '':
     ac = set()

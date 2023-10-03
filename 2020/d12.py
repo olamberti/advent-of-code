@@ -8,7 +8,7 @@ def nav(pos, ref, com, val, prt):
   return pos, ref
 
 p1, f, p2, wp = 0, 1, 0, 10 + 1j
-for i in open('12.txt'):
+for i in open('d12.txt'):
   c, v = i[0], int(i[1:])
   p1, f  = nav(p1, f, c, v, 1)
   p2, wp = nav(p2, wp, c, v, 2)

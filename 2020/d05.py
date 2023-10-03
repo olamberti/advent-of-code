@@ -1,5 +1,5 @@
 s = set()
-for l in open('05.txt'):
+for l in open('d05.txt'):
   r, c = l[0:7], l[7:10]
   row, col = 0, 0
   for i, b in enumerate(r[::-1]):

@@ -1,4 +1,4 @@
-report = [int(x) for x in open('01.txt').read().splitlines()]
+report = [int(x) for x in open('d01.txt').read().splitlines()]
 
 for x in report:
   if 2020 - x in report:

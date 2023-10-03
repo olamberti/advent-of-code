@@ -2,7 +2,7 @@ from copy import deepcopy as dp
 
 # Input parsing:
 cards, p = [[], []], 0
-for line in open('22.txt').read().splitlines():
+for line in open('d22.txt').read().splitlines():
   if line == '': p += 1
   elif line.isnumeric(): cards[p].append(int(line))
 

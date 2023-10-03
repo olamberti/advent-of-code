@@ -1,5 +1,5 @@
 # Original program
-prog = open('08.txt').read().splitlines()
+prog = open('d08.txt').read().splitlines()
 
 # Execute program:
 def run(prog):

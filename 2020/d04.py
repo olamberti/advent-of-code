@@ -44,7 +44,7 @@ def check(e):
   return False
 
 ps, n, v1, v2 = [[]], 0, 0, 0
-inp = open('04.txt').read().splitlines()
+inp = open('d04.txt').read().splitlines()
 for i, line in enumerate(inp, 1):
   if line != '':
     p = [[e.split(':')[0], e.split(':')[1]] for e in line.split()]

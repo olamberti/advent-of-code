@@ -46,7 +46,7 @@ def calc(line, p):
   
 # P1:
 p1, p2 = 0, 0
-for l in open('18.txt').read().splitlines():
+for l in open('d18.txt').read().splitlines():
   p1 += calc(l, 1)
   p2 += calc(l, 2)
 print(p1)

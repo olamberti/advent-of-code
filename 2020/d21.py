@@ -1,6 +1,6 @@
 # Input parse:
 foods, ings, alls = [], set(), dict()
-for line in open('21.txt').read().splitlines():
+for line in open('d21.txt').read().splitlines():
   l1, l2 = line.split(' (')
   l1, l2 = l1.split(), l2.strip(')')[9:].split(', ')
   foods.append([l1, l2])

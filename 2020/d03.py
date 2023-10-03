@@ -1,4 +1,4 @@
-grid = open('03.txt').read().splitlines()
+grid = open('d03.txt').read().splitlines()
 slopes = [1, 3, 5, 7, 0.5]
 
 t, w, l = [0] * 5, len(grid[0]), len(slopes) - 1

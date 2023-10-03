@@ -1,6 +1,6 @@
 # Parsing:
 rul, mes, bp = {}, [], False
-for l in open('19.txt').read().splitlines():
+for l in open('d19.txt').read().splitlines():
   if l == '': bp = True
   elif bp: mes.append(l)
   else:

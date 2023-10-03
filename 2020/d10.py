@@ -1,5 +1,5 @@
 # Adapters
-ads = [int(x) for x in open('10.txt').read().splitlines()]
+ads = [int(x) for x in open('d10.txt').read().splitlines()]
 ads.append(0)
 ads.sort()
 ads.append(ads[-1] + 3)

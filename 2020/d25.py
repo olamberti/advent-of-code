@@ -1,5 +1,5 @@
 sn, div = 7, 20201227
-nums = [int(x) for x in open('25.txt').read().splitlines()]
+nums = [int(x) for x in open('d25.txt').read().splitlines()]
 
 loops = []
 for i in range(2):

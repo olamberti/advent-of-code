@@ -1,5 +1,5 @@
 # Input parsing:
-inp = open('07.txt').read().splitlines()
+inp = open('d07.txt').read().splitlines()
 rules = {}
 for line in inp:
   line = line.split(' contain ')

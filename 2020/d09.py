@@ -1,5 +1,5 @@
 # Inputs
-q = [int(x) for x in open('09.txt').read().splitlines()]
+q = [int(x) for x in open('d09.txt').read().splitlines()]
 l = 25
 
 # P1
