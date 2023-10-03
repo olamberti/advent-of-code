@@ -1,6 +1,6 @@
 import itertools
 from intcode import IntCode
-memory = [int(x) for x in open('07.txt').read().split(',')]
+memory = [int(x) for x in open('d07.txt').read().split(',')]
 
 # P1:
 val, thrust = 0, 0

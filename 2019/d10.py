@@ -2,7 +2,7 @@
 import math, cmath   # complex number calculations
 ast = set()          # set of asteroids
 
-for y, line in enumerate(open('10.txt', 'r').read().splitlines()):  # go through each line
+for y, line in enumerate(open('d10.txt', 'r').read().splitlines()):  # go through each line
   for x, elem in enumerate(line):                                   # go through each character
     if elem == '#': ast.add((x, y))                                 # if hashtag, add to asteroids
       

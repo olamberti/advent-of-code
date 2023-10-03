@@ -7,7 +7,7 @@ total = 0
 def fuel(mass):
   return mass // 3 - 2
 
-for mass in open('01.txt').read().splitlines():
+for mass in open('d01.txt').read().splitlines():
   f = fuel(int(mass))
   while f > 0:
     total += f

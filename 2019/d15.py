@@ -1,5 +1,5 @@
 from intcode import IntCode
-memory = [int(x) for x in open('15.txt').read().split(',')]
+memory = [int(x) for x in open('d15.txt').read().split(',')]
 
 # P1
 dirs = {1: 1j, 2: -1j, 3: -1, 4: 1}

@@ -1,4 +1,4 @@
-r, p1, p2 = [int(x) for x in open('04.txt').read().split('-')], 0, 0
+r, p1, p2 = [int(x) for x in open('d04.txt').read().split('-')], 0, 0
 
 def check_p1(x):
   x = str(x)

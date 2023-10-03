@@ -1,6 +1,6 @@
 from copy import deepcopy as dp
 
-sig = [int(x) for x in open('16.txt').read()]
+sig = [int(x) for x in open('d16.txt').read()]
 base = [0, 1, 0, -1]
 
 # P1

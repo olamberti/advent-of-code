@@ -47,7 +47,7 @@ def shuffle(deck, inst):
 
 
 # P1
-inst = open('22.txt').readlines()
+inst = open('d22.txt').readlines()
 N, deck = 10_007, (0, 1)
 
 a0, m = shuffle(deck, inst)

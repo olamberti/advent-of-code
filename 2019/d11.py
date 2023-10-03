@@ -1,5 +1,5 @@
 from intcode import IntCode
-memory = [int(x) for x in open('11.txt').read().split(',')]
+memory = [int(x) for x in open('d11.txt').read().split(',')]
 
 # P1:
 whites, visited, tile, d = set(), set(), 0, 1j

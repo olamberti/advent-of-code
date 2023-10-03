@@ -1,5 +1,5 @@
 from intcode import IntCode
-memory = [int(x) for x in open('02.txt').read().split(',')]
+memory = [int(x) for x in open('d02.txt').read().split(',')]
 
 # P1:
 memory[1:3] = 12, 2

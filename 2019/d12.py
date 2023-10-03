@@ -1,7 +1,7 @@
 # Init
 import math
 pos, vel  = [], [], 
-for line in open('12.txt', 'r').read().splitlines():
+for line in open('d12.txt', 'r').read().splitlines():
   pos.append([int(x.strip('>').split('=')[1]) for x in line.split(', ')])
   vel.append([0, 0, 0])
 

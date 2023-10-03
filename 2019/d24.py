@@ -1,7 +1,7 @@
 # Read input
 dirs = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 space, bugs = set(), set()
-for y, line in enumerate(open('24.txt').readlines()):
+for y, line in enumerate(open('d24.txt').readlines()):
     for x, e in enumerate(line.strip()):
         if e =='#': bugs.add((x, y))
         else: space.add((x, y))

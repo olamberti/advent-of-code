@@ -1,6 +1,6 @@
 from collections import deque
 from intcode import IntCode
-memory = [int(x) for x in open('23.txt').read().split(',')]
+memory = [int(x) for x in open('d23.txt').read().split(',')]
 
 progs, queues, packets, n = [], [], [], 50
 for i in range(n):

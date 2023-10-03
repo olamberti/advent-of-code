@@ -5,7 +5,7 @@ import heapq
 walls, paths, keys, doors = set(), set(), {}, {}
 dirs = [1, 1j, -1, -1j]
 
-for y, line in enumerate(open('18.txt').readlines()):
+for y, line in enumerate(open('d18.txt').readlines()):
     for x, e in enumerate(line.strip()):
         if e == '#': walls.add(x + y*1j)
         elif e == '.': paths.add(x + y*1j)

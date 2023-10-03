@@ -1,4 +1,4 @@
-wires = [wire.split(',') for wire in open('03.txt').read().splitlines()]
+wires = [wire.split(',') for wire in open('d03.txt').read().splitlines()]
 dirs = {'L':-1, 'R':1, 'U':1j, 'D':-1j}
 
 def md(p):

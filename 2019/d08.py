@@ -1,6 +1,6 @@
 # Init:
 w, t = 25, 6
-sif = [int(x) for x in open('08.txt').read()]
+sif = [int(x) for x in open('d08.txt').read()]
 
 # Create layers and picture:
 pic = [[2 for x in range(w)] for y in range(t)]

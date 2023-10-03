@@ -1,5 +1,5 @@
 from intcode import IntCode
-memory = [int(x) for x in open('13.txt').read().split(',')]
+memory = [int(x) for x in open('d13.txt').read().split(',')]
 
 # P1:
 game = IntCode(memory)

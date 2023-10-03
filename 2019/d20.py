@@ -4,7 +4,7 @@ import heapq
 walls, paths, gates, letters = set(), set(), {}, {}
 dirs = [1, 1j, -1, -1j]
 
-for y, line in enumerate(open('20.txt').readlines()):
+for y, line in enumerate(open('d20.txt').readlines()):
     for x, c in enumerate(line):
         pos = x + y*1j
         if c == '#': walls.add(pos)

@@ -1,5 +1,5 @@
 from intcode import IntCode
-memory = [int(x) for x in open('19.txt').read().split(',')]
+memory = [int(x) for x in open('d19.txt').read().split(',')]
 
 # Print function:
 def printmap(beam):

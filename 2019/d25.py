@@ -1,6 +1,6 @@
 from intcode import IntCode
 import itertools
-memory = [int(x) for x in open('25.txt').read().split(',')]
+memory = [int(x) for x in open('d25.txt').read().split(',')]
 
 def ascii(command):
     return [ord(c) for c in command] + [10]

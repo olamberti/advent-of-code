@@ -2,7 +2,7 @@ import math
 
 # Input parsing
 reactions = {}
-for line in open('14.txt').readlines():
+for line in open('d14.txt').readlines():
     ingr, prod = line.strip().split(' => ')
     ingr, prod = ingr.split(', '), prod.split(' ')
     reactions[prod[1]] = [int(prod[0])]

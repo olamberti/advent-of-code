@@ -1,5 +1,5 @@
 from intcode import IntCode
-memory = [int(x) for x in open('21.txt').read().split(',')]
+memory = [int(x) for x in open('d21.txt').read().split(',')]
 
 def ascii(inp):
     asci = []
