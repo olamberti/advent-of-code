@@ -2,7 +2,7 @@
 grid = []
 height, width = 0, 0
 
-with open('22.txt', 'r') as input:
+with open('d22.txt', 'r') as input:
   is_grid = True
   for line in input:
     if line == "\n": is_grid = False

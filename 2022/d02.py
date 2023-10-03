@@ -27,7 +27,7 @@ def calc_score_2(elf, result):
 
 total_score_1 = 0
 total_score_2 = 0
-with open("02.txt","r") as input:  # use "input_test.txt" for the test case
+with open("d02.txt","r") as input:  # use "input_test.txt" for the test case
   for line in input:
     elf = convert_elf[line[0]]   
     player = convert_player[line[2]]

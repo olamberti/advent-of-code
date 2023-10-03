@@ -1,5 +1,5 @@
 # Read input:
-with open("08.txt") as input:
+with open("d08.txt") as input:
   data = [list(line) for line in input.read().splitlines()]
   
 # Scenic score for a given direction:

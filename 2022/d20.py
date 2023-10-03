@@ -1,5 +1,5 @@
 # Read data:
-data = [int(x) for x in open('20.txt')]
+data = [int(x) for x in open('d20.txt')]
 part = 2
 
 if part == 1:

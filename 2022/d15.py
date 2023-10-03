@@ -1,6 +1,6 @@
 # Read input:
 y, data, online = 2000000, dict(), set()
-for line in open('15.txt','r'):
+for line in open('d15.txt','r'):
   words = [word.strip(',:xy=') for word in line.strip().split()]
   x1, y1, x2, y2 = int(words[2]), int(words[3]), int(words[8]), int(words[9])
   data[(x1, y1)] = (x2, y2) # keys-sensors: values-beacons

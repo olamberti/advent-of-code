@@ -1,6 +1,6 @@
 # Read input:
 import copy
-with open('13.txt', 'r') as input:
+with open('d13.txt', 'r') as input:
   data = input.read().splitlines() 
 
 # Comparison function (returns 1: OK, 0: no decision, -1: NOK):

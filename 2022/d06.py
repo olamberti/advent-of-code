@@ -1,4 +1,4 @@
-with open("06.txt","r") as input:
+with open("d06.txt","r") as input:
   text = input.read()
   start_of_packet = 0
   for i in range(len(text)):

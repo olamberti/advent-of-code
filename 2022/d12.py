@@ -1,5 +1,5 @@
 # Read input:
-with open('12.txt', 'r') as input:
+with open('d12.txt', 'r') as input:
   heightmap = [list(line) for line in input.read().splitlines()]
 
 # Initialization and function definitions:

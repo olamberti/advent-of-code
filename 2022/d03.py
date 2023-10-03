@@ -23,7 +23,7 @@ priority = 0
 badges = 0
 bags = ["", "", ""]
 i = 1
-with open("03.txt","r") as input:    # use "input_test.txt" for test case
+with open("d03.txt","r") as input:    # use "input_test.txt" for test case
   for bag_content in input:
     bag_content = bag_content.rstrip()
     bag_size = int(len(bag_content) / 2)

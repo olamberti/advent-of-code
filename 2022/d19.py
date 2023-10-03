@@ -1,6 +1,6 @@
 # Read input:
 blueprints = []
-for line in open('19.txt'):
+for line in open('d19.txt'):
   numbers = [int(x) for x in line.split() if x.isnumeric()]
   recipe = [[(0, numbers[0])], [(0, numbers[1])], [(0, numbers[2]), (1, numbers[3])], [(0, numbers[4]), (2, numbers[5])]]
   blueprints.append(recipe)  # recipe [robot_type (0-3)][(0: resource_type (0-3), 1: ore_cost]

@@ -1,6 +1,6 @@
 # Read input:
 elves = set()
-for x, line in enumerate(open('23.txt'), 1):
+for x, line in enumerate(open('d23.txt'), 1):
   for y, char in enumerate(line, 1):
     if char == '#': elves.add(x + y * 1j)
 

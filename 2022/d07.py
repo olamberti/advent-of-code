@@ -1,5 +1,5 @@
 # Read input data
-with open("07.txt", "r") as input:
+with open("d07.txt", "r") as input:
   data = input.read().splitlines()
 
 # Class definitions:

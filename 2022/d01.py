@@ -1,5 +1,5 @@
 max = [0, 0, 0]
-with open('01.txt','r') as calories:
+with open('d01.txt','r') as calories:
   current_elf = 0
   for line in calories:
     if line != "\n":

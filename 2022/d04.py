@@ -16,7 +16,7 @@ def overlaps(a1, a2, b1, b2):
   
 count_contains = 0
 count_overlaps = 0
-with open("04.txt","r") as input:    # use "input_test.txt" for test_case
+with open("d04.txt","r") as input:    # use "input_test.txt" for test_case
   for line in input:
     pairs = read_line(line)
     if full_contains(*pairs):

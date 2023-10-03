@@ -8,7 +8,7 @@ def make_yell(name):
 
 # Read in data:
 monkeys = {}
-for line in open('21.txt'):
+for line in open('d21.txt'):
   name, yell = line.split(':')[0], line.split(':')[1].strip()
   if yell.isnumeric(): monkeys[name] = int(yell)
   else: monkeys[name] = yell

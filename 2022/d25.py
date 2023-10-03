@@ -1,6 +1,6 @@
 # Read input:
 data = []
-for line in open('25.txt', 'r'):
+for line in open('d25.txt', 'r'):
   data.append(line.strip())
 
 # Define functions:

@@ -1,5 +1,5 @@
 # Read input:
-with open('10.txt', 'r') as input:
+with open('d10.txt', 'r') as input:
   data = input.read().splitlines()
 
 # Hack the program:

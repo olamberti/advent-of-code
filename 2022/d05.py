@@ -1,5 +1,5 @@
 # Read in file:
-with open("05.txt","r") as input:  # use "input_test.txt" for test case
+with open("d05.txt","r") as input:  # use "input_test.txt" for test case
   text = input.read()
   text_lines = text.split("\n")
   # Determine stack number and height:

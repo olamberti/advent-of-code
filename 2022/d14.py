@@ -1,5 +1,5 @@
 # Read and parse data
-with open('14.txt', 'r') as input:
+with open('d14.txt', 'r') as input:
   text = [lines.split('->') for lines in input.read().splitlines()]
 data = []
 for i, line in enumerate(text):

@@ -5,7 +5,7 @@ mx = my = mz = float('inf')                          # lower bounds of volume
 Mx = My = Mz = -float('inf')                         # upper bounds of volume
 
 # Read input, add lava cell and count face occurances:
-for line in open('18.txt'):
+for line in open('d18.txt'):
   x, y, z = cell = tuple(map(int, line.split(',')))  
   lava.add(cell)
   mx, my, mz = min(mx,x), min(my,y), min(mz,z)

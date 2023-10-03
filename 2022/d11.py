@@ -1,5 +1,5 @@
 # User inputs & class definition:
-my_input = '11.txt'
+my_input = 'd11.txt'
 part = 2
 
 class monkey():

@@ -1,5 +1,5 @@
 # Read input:
-with open('17.txt', 'r') as input:
+with open('d17.txt', 'r') as input:
   jets = input.read().strip()
 jets_length = len(jets)
 

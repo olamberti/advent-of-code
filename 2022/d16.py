@@ -1,7 +1,7 @@
 # Read input:
 valves, tunnels = dict(), dict()
 start_pos = 'AA'
-for line in open('16.txt', 'r'):
+for line in open('d16.txt', 'r'):
   words = [word.strip('rate=,;') for word in line.strip().split()]
   valves[words[1]] = int(words[4])
   tunnels[words[1]] = [words[i] for i in range(9, len(words))]

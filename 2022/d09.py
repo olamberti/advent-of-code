@@ -1,5 +1,5 @@
 # Read input:
-with open("09.txt","r") as input:
+with open("d09.txt","r") as input:
   data = input.read().splitlines()
   
 # Dictionary and functions:

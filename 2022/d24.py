@@ -3,7 +3,7 @@ blizzards = (set(), set(), set(), set())           # storing the four different 
 dirs = ((-1, 0), (1, 0), (0, -1), (0, 1), (0, 0))  # corresponding movement directions
 
 height, width = 0, 0
-for r, line in enumerate(open('24.txt', 'r')):
+for r, line in enumerate(open('d24.txt', 'r')):
   line = line.strip()
   height += 1
   width = len(line)    
