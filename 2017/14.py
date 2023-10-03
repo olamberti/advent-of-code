@@ -1,7 +1,6 @@
-# P1
-inp = open('10.txt').read()
-c, lengths = [i for i in range(256)], [int(x) for x in inp.split(',')]
+inp, size = open('14.txt').read(), 128
 
+# Knothash functions from day 10
 def round(c, i, ss, ls):
     for l in ls:
         if i + l <= len(c):
@@ -14,10 +13,6 @@ def round(c, i, ss, ls):
         ss += 1
     return c, i, ss
 
-c, _, _ = round(c, 0, 0, lengths)
-print(c[0] * c[1])
-
-# P2
 def knothash(s):
     # Do rounds
     c, lengths, i, ss = [i for i in range(256)], [ord(x) for x in s] + [17, 31, 73, 47, 23], 0, 0
@@ -34,4 +29,26 @@ def knothash(s):
     for x in dh: res += hex(x)[2:].zfill(2)
     return res
 
-print(knothash(inp))
+# P1
+data = set()
+for i in range(size):
+    bh = bin(int(knothash(inp + '-' + str(i)), 16))[2:].zfill(size)
+    for j in range(size):
+        if bh[j] == '1': data.add(i + j*1j)
+print(len(data))
+
+# P2
+p2, grouped = 0, set()
+for e in data:
+    if e in grouped: continue
+    p2 += 1; grouped.add(e); front = set()
+    front.add(e)
+    while front:
+        new_front = set()
+        for t in front:
+            for d in [1, -1, 1j, -1j]:
+                nt = t + d
+                if nt in grouped or nt not in data: continue
+                new_front.add(nt); grouped.add(nt)
+        front = new_front
+print(p2)
