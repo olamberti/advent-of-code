@@ -1,5 +1,5 @@
 # P1:
-total = sum([int(x) // 3 - 2 for x in open('01.txt').read().splitlines()])
+total = sum([int(x) // 3 - 2 for x in open('d01.txt').read().splitlines()])
 print(total)
 
 # P2:
