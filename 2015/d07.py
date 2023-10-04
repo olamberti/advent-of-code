@@ -60,7 +60,7 @@ print(p1)
 
 # P2
 insts = []
-for line in open('07.txt').readlines():
+for line in open('d07.txt').readlines():
     line = line.strip().split(' ')
     if line[-1] == 'b':
         line[0] = str(p1)
