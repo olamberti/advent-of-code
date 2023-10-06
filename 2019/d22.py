@@ -1,5 +1,3 @@
-from copy import deepcopy as dp
-
 def get_card(a0, m, n):
     return (a0 + m * n) % N
 
