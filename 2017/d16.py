@@ -1,8 +1,5 @@
-import numpy as np
-
 moves = open('d16.txt').read().split(',')
 
-# P1
 def dance(s):
     progs = list(s)
     for move in moves:
@@ -19,7 +16,16 @@ def dance(s):
                 progs[p1], progs[p2] = progs[p2], progs[p1]
     return ''.join(progs)
 
-print(dance('abcdefghijklmnop'))
+done = {}
+p, r = 'abcdefghijklmnop', 0
+while p not in done:
+    done[p] = r
+    r += 1
+    p = dance(p)
+    if r == 1: print(p)
 
-# P2
-# TODO
+m = 1_000_000_000 % r
+for k, v in done.items():
+    if v == m:
+        print(k)
+        break
