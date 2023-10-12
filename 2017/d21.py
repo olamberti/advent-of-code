@@ -19,13 +19,12 @@ for line in open('d21.txt').read().splitlines():
         g1 = np.rot90(g1)
 
 def iterate(grid):
-    size = grid.shape[0]
+    res, size = None, grid.shape[0]
     c = 2 if size % 2 == 0 else 3
-    res, n = None, size // c
-    for i in range(n):
+    for i in range(size // c):
         row = None
-        for j in range(n):
-            cut = g2h(grid[i*c:(i*c)+c,j*c:(j*c)+c])
+        for j in range(size // c):
+            cut = g2h(grid[i*c:i*c+c,j*c:j*c+c])
             if row is None: row = convert[cut]
             else: row = np.concatenate((row, convert[cut]), 1)
         if res is None: res = row
