@@ -10,10 +10,8 @@ def get(x):
 pos, m = 0, 0
 while 0 <= pos < len(prog):
     ins = prog[pos]
-    if ins[0] == 'set':
-        regs[ins[1]] = get(ins[2])
-    elif ins[0] == 'sub':
-        regs[ins[1]] -= get(ins[2])
+    if ins[0] == 'set': regs[ins[1]] = get(ins[2])
+    elif ins[0] == 'sub': regs[ins[1]] -= get(ins[2])
     elif ins[0] == 'mul':
         regs[ins[1]] *= get(ins[2])
         m += 1
@@ -22,5 +20,11 @@ while 0 <= pos < len(prog):
     pos += 1
 print(m)
 
-# P2
-# TODO: code part 2
+# P2 - manual analysis of the code can be simplified to the following for my input
+h = 0
+for b in range(105_700, 122_700 + 1, 17):
+    for i in range(2, int(b ** 0.5) + 1):
+        if b % i == 0:
+            h += 1
+            break
+print(h)
