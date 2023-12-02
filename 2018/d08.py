@@ -1,19 +1,27 @@
-data = [int(x) for x in open('d08.txt').read().split()]
+from collections import deque as dq
 
-class Node():
-    def __init__(self, n_child, n_meta, parent):
-        self.nCh = n_child
-        self.nM = n_meta
-        self.parent = parent
-        self.children = None
+input = dq([int(x) for x in open('d08.txt').read().split()])
 
-# P1:
-tree = Node(data[0], data[1], None)
+def node(data):
+    # Header
+    chn = data.popleft()
+    mde = data.popleft()
+    total_sum, metadata, childs, val = 0, [], [], 0
+    # Process child nodes
+    for _ in range(chn):
+        ms, chv = node(data)
+        total_sum += ms
+        childs.append(chv)
+    # Proces metadata
+    for _ in range(mde):
+        metadata.append(data.popleft())
+    total_sum += sum(metadata)
+    # Calculate node value
+    if chn == 0: return total_sum, sum(metadata)
+    for m in metadata:
+        if m - 1 in range(chn): val += childs[m - 1]
+    return total_sum, val
 
-i = 2
-while i < len(data):
-    pass
-
-
-# P2:
-# TODO code part 2
+p1, p2 = node(input)
+print(p1)
+print(p2)
