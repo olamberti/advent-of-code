@@ -28,7 +28,6 @@ def encode(hand, p2 = False):
     else: id =  [1] + id
     return tuple(id)
 
-
 ranks_1, ranks_2, bids = [], [], {}
 for line in open('d07.txt').read().splitlines():
     hand, bid = line.split()
