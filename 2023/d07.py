@@ -1,14 +1,13 @@
 def encode(hand, part2 = False):
-    labels, value = 'X23456789TJQKA', []
+    labels = 'X23456789TJQKA'
     if part2: hand = hand.replace('J', 'X')
+    values = [labels.index(card) for  card in hand]
     counts = {card: hand.count(card) for card in labels}
     jokers = counts.pop('X')
     counts = sorted(counts.values(), reverse=True)[:2]
     counts[0] += jokers
-    value.append([[1,1],[2,1],[2,2],[3,1],[3,2],[4,1],[5,0]].index(counts))
-    for card in hand:
-        value.append(labels.index(card))   
-    return tuple(value)
+    typ = [[[1,1],[2,1],[2,2],[3,1],[3,2],[4,1],[5,0]].index(counts)]
+    return tuple([typ, *values])
 
 hands_1, hands_2 = [], []
 for line in open('d07.txt'):
