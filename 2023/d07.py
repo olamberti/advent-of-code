@@ -1,12 +1,14 @@
+labels = 'X23456789TJQKA'
+typs = ([1,1],[2,1],[2,2],[3,1],[3,2],[4,1],[5,0])
+
 def strength(hand, part = 1):
-    labels = 'X23456789TJQKA'
     if part == 2: hand = hand.replace('J', 'X')
     values = [labels.index(card) for  card in hand]
     counts = {card: hand.count(card) for card in labels}
     jokers = counts.pop('X')
     counts = sorted(counts.values(), reverse=True)[:2]
     counts[0] += jokers
-    typ = ([1,1],[2,1],[2,2],[3,1],[3,2],[4,1],[5,0]).index(counts)
+    typ = typs.index(counts)
     return tuple([typ, *values])
 
 for part in (1, 2):
