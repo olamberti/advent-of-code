@@ -1,16 +1,16 @@
 import re
 import math
 
-insts, rest = open('d08.txt').read().split('\n\n')
+instructions, rest = open('d08.txt').read().split('\n\n')
 
-network, dirs,  posis = {}, {'L':0, 'R':1}, []
+network, dirs, posis = {}, {'L':0, 'R':1}, []
 for line in rest.splitlines():
     node, left, right = re.findall(r'[\w][\w][\w]', line)
     network[node] = (left, right)
     if node[-1] == 'A': posis.append(node)
 
 def next_pos(pos, steps):
-    turn = dirs[insts[steps % len(insts)]]
+    turn = dirs[instructions[steps % len(instructions)]]
     return network[pos][turn]
 
 # Part 1
