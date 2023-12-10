@@ -1,6 +1,6 @@
 import re
 
-dirs =  {'e':1, 's':1j, 'w':-1, 'n':-1j}
+compass = {'e':1, 's':1j, 'w':-1, 'n':-1j}
 facemap = {'|': {'n':'n', 's':'s'}, '-': {'e':'e', 'w':'w'},
            'L': {'s':'e', 'w':'n'}, 'J': {'s':'w', 'e':'n'},
            '7': {'n':'w', 'e':'s'}, 'F': {'n':'e', 'w':'s'}}
@@ -13,15 +13,15 @@ for y, line in enumerate(open('d10.txt')):
 width, height = x, y
 
 def get_next(pos, face):
-    new_pos = pos + dirs[face]
+    new_pos = pos + compass[face]
     new_face = facemap[grid[new_pos]][face]
     return new_pos, new_face
 
-#Part 1 - BFS through pipe
-front, loop, startfaces, steps = set(), set(), set(), 0
+# Part 1 - BFS through pipe, state as (position, direction)
+loop, front, startfaces, steps = set(), set(), set(), 0
 loop.add(start)
 
-for face, d in dirs.items():
+for face, d in compass.items():
     new_pos = start + d
     if new_pos not in grid or grid[new_pos] == '.': continue
     if face in facemap[grid[new_pos]]: 
@@ -29,7 +29,7 @@ for face, d in dirs.items():
         startfaces.add(face)
 
 for tile, turns in facemap.items():
-    if set(sorted(turns.values())) == startfaces: grid[start] = tile
+    if set(turns.values()) == startfaces: grid[start] = tile
 
 while front:
     new_front = set()
@@ -42,17 +42,16 @@ while front:
     if front: steps += 1
 print(steps)
 
-#Part 2 - Inside or outside loop
+# Part 2 - Inside or outside loop
 for pos in grid:
     if pos not in loop: grid[pos] = '.'
 
-eggs = 0
+total = 0
 for y in range(height + 1):
-    row, inside = '', False
-    for x in range(width + 1):
-        row += grid[x + y*1j]
+    inside = False
+    row = ''.join([grid[x + y*1j] for x in range(width + 1)])
     row = re.sub(r'(F-*J)|(L-*7)', '|', row)
     for elem in row:
         if elem == '|': inside = not inside
-        elif elem == '.' and inside: eggs += 1
-print(eggs)
+        elif elem == '.' and inside: total += 1
+print(total)
