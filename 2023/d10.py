@@ -50,8 +50,7 @@ total = 0
 for y in range(height + 1):
     inside = False
     row = ''.join([grid[x + y*1j] for x in range(width + 1)])
-    row = re.sub(r'(F-*J)|(L-*7)', '|', row)
     for elem in row:
-        if elem == '|': inside = not inside
-        elif elem == '.' and inside: total += 1
+        if elem in '|LJ': inside = not inside
+        elif elem =='.' and inside: total += 1
 print(total)
