@@ -5,37 +5,18 @@ def dist(a, b):
 
 def expand(galaxies, scale):
     new_galaxies = []
-    mX = max([coord[0] for coord in galaxies])
-    mY = max([coord[1] for coord in galaxies])
-    empty_y = 0
-    for j in range(mY + 1):
-        if all([coord[1] != j for coord in galaxies]):
-                empty_y += 1
-                continue
-        empty_x = 0
-        for i in range(mX + 1):
-            if all([coord[0] != i for coord in galaxies]):
-                empty_x += 1
-                continue
-            for x, y in galaxies:
-                if x == i and y == j:
-                    new_galaxies.append((i + empty_x * (scale - 1), j + empty_y * (scale - 1)))
+    for gx, gy in galaxies:
+        gx += (scale - 1) * len([x for x in empty_x if x < gx])
+        gy += (scale - 1) * len([y for y in empty_y if y < gy])
+        new_galaxies.append((gx, gy))
     return new_galaxies
-    
 
-galaxies = []
-for y, line in enumerate(open('d11.txt')):
-    for x, ch in enumerate(line):
-        if ch == '#': galaxies.append((x, y))
+grid = [line.strip() for line in open('d11.txt')]
+empty_x = [x for x, line in enumerate(list(zip(*grid))) if all(ch == '.' for ch in line)]
+empty_y = [y for y, line in enumerate(grid) if all(ch == '.' for ch in line)]
+galaxies = [(x, y) for y, line in enumerate(grid) for x, ch in enumerate(line) if ch == '#']
 
-new_galaxies = expand(galaxies, 2)
-total = 0
-for g1, g2 in combinations(new_galaxies, 2):
-    total += dist(g1, g2)
-print(total)
-
-new_galaxies = expand(galaxies, 1_000_000)
-total = 0
-for g1, g2 in combinations(new_galaxies, 2):
-    total += dist(g1, g2)
-print(total)
+for scale in (2, 1_000_000):
+    new_galaxies = expand(galaxies, scale)
+    total = sum([dist(g1, g2) for g1, g2 in combinations(new_galaxies, 2)])
+    print(total)
