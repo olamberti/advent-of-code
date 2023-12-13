@@ -1,5 +1,3 @@
-grids = open('d13.txt').read().split('\n\n')
-
 def ref_val(grid, skip = -1):
     for mul in (100, 1):
         for x in range(len(grid) - 1):
@@ -13,11 +11,11 @@ def ref_val(grid, skip = -1):
     return 0
 
 p1, p2 = 0, 0
-for n, grid in enumerate(grids, 1):
+grids = open('d13.txt').read().split('\n\n')
+for grid in grids:
     grid = [list(line) for line in grid.splitlines()]
     v1 = ref_val(grid)
     p1 += v1
-
     for r in range(len(grid)):
         for c in range(len(grid[0])):
             if grid[r][c] == '#': grid[r][c] = '.'
