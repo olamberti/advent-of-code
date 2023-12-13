@@ -1,40 +1,33 @@
 grids = open('d13.txt').read().split('\n\n')
 
-def ref_val(grid, ref1 = 0):
-    for flip in range(2):
+def ref_val(grid, skip = -1):
+    for mul in (100, 1):
         for x in range(len(grid) - 1):
             if grid[x] == grid[x + 1]:
-                p = x
-                for i in range(min(p, len(grid) - 2 - p) + 1):
-                    if grid[p - i] == grid[p + 1 + i]: continue
-                    break
+                for i in range(min(x, len(grid) - 2 - x) + 1):
+                    if grid[x - i] != grid[x + 1 + i]: break
                 else:
-                    val = p + 1 if flip else (p + 1) * 100
-                    if val == ref1: continue
-                    else: return val
-        grid = [''.join(row) for row in list(zip(*grid))]
+                    val = (x + 1) * mul
+                    if val != skip: return val
+        grid = [list(line) for line in zip(*grid)]
     return 0
 
 p1, p2 = 0, 0
 for n, grid in enumerate(grids, 1):
-    grid = grid.splitlines()
-    ref1 = ref_val(grid)
-    p1 += ref1
+    grid = [list(line) for line in grid.splitlines()]
+    v1 = ref_val(grid)
+    p1 += v1
 
     for r in range(len(grid)):
         for c in range(len(grid[0])):
-            ref2 = 0
-            if grid[r][c] == '#':
-                grid[r] = grid[r][:c] + '.' +  grid[r][c + 1:]
-            else:
-                continue
-            ref2 = ref_val(grid, ref1)
-            grid[r] = grid[r][:c] + '#' +  grid[r][c + 1:]
-            if ref2:
-                p2 += ref2
+            if grid[r][c] == '#': grid[r][c] = '.'
+            else: continue
+            v2 = ref_val(grid, v1)
+            grid[r][c] = '#'
+            if v2:
+                p2 += v2
                 break
-        if ref2:
-            break
+        if v2: break
 
 print(p1)
 print(p2)
