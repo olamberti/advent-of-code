@@ -11,8 +11,7 @@ def ref_val(grid, skip = -1):
     return 0
 
 p1, p2 = 0, 0
-grids = open('d13.txt').read().split('\n\n')
-for grid in grids:
+for grid in open('d13.txt').read().split('\n\n'):
     grid = [list(line) for line in grid.splitlines()]
     v1 = ref_val(grid)
     p1 += v1
