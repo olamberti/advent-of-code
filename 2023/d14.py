@@ -30,8 +30,7 @@ grids, N = [], 1_000_000_000
 for step in range(1, N + 1):
     grid = cycle(grid)
     if grid in grids:
+        loop_start = grids.index(grid) + 1
+        print(beamload(grids[loop_start + (N - loop_start) % (step - loop_start) - 1]))
         break
     grids.append(grid)
-
-loop_start = grids.index(grid) + 1
-print(beamload(grids[loop_start + (N - loop_start) % (step - loop_start) - 1]))
