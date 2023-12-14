@@ -26,13 +26,12 @@ def beamload(grid):
 print(beamload(tiltup(grid)))
 
 # Part 2
-grids, cache, N = [], set(), 1_000_000_000
+grids, N = [], 1_000_000_000
 for step in range(1, N + 1):
     grid = cycle(grid)
-    if grid in cache:
+    if grid in grids:
         break
     grids.append(grid)
-    cache.add(grid)
 
 loop_start = grids.index(grid) + 1
 print(beamload(grids[loop_start + (N - loop_start) % (step - loop_start) - 1]))
