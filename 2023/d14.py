@@ -1,65 +1,38 @@
-from collections import deque as dq
-
-grid = [list(line) for line in open('d14.txt').read().splitlines()]
+grid = tuple(open('d14.txt').read().splitlines())
 size = len(grid)
 
 def cycle(grid):
-    for d in ('N', 'W', 'S', 'E'):
-        grid = tilt(grid, d)
+    for _ in range(4):
+        grid = tiltup(grid)
+        grid = rot(grid)
     return grid
 
-def id(grid):
-    rounds = set()
-    for y, row in enumerate(grid):
-        for x, ch in enumerate(row):
-            if ch == 'O': rounds.add((x, y))
-    return rounds
-
-def tilt(grid, d):
-    if d == 'N': grid = [list(line) for line in zip(*grid)]
-    elif d == 'S': grid = [list(line[::-1]) for line in zip(*grid)]
-    elif d == 'W': pass
-    elif d == 'E': grid = [line[::-1] for line in grid]
-
+def tiltup(grid):
+    grid = [''.join(row) for row in zip(*grid)]
     new_grid = []
-    for col in grid:
-        new_col = ''
-        rounds = dq([i for i, r in enumerate(col) if r == 'O'])
-        squares = dq([i for i, r in enumerate(col) if r == '#'])
-        for i in range(len(col)):
-            if i in squares:
-                new_col += '#'
-                squares.popleft()
-            elif rounds and (not squares or rounds[0] < squares[0]):
-                new_col += 'O'
-                rounds.popleft()
-            else:
-                new_col += '.'
-        new_grid.append(list(new_col))
-    
-    if d == 'N': new_grid = [line for line in zip(*new_grid)]
-    elif d == 'S': new_grid = [line[::-1] for line in zip(*new_grid[::-1])][::-1]
-    elif d == 'W': pass
-    elif d == 'E': new_grid = [line[::-1] for line in new_grid]
-    return new_grid
+    for row in grid:
+        new_row = '#'.join([''.join(sorted(list(group), reverse=True)) for group in row.split('#')])
+        new_grid.append(new_row)
+    return tuple(''.join(row) for row in zip(*new_grid))
 
-def northload(rounds):
-    load = 0
-    for x, y in rounds:
-        load += size - y
-    return load
+def rot(grid):
+    grid = [row for row in zip(*grid)]
+    return tuple(''.join(row[::-1]) for row in grid)
+
+def beamload(grid):
+    return sum(row.count('O') * (size - r) for r, row in enumerate(grid))
 
 # Part 1
-print(northload(id(tilt(grid, 'N'))))
+print(beamload(tiltup(grid)))
 
 # Part 2
-seen, N = [], 1_000_000_000
+grids, cache, N = [], set(), 1_000_000_000
 for step in range(1, N + 1):
     grid = cycle(grid)
-    if id(grid) in seen:
-        s_loop = seen.index(id(grid)) + 1
-        loop = step - s_loop
-        rem = (N - s_loop) % loop
+    if grid in cache:
         break
-    seen.append(id(grid))
-print(northload(seen[s_loop + rem - 1]))
+    grids.append(grid)
+    cache.add(grid)
+
+loop_start = grids.index(grid) + 1
+print(beamload(grids[loop_start + (N - loop_start) % (step - loop_start) - 1]))
