@@ -1,10 +1,10 @@
 def ref_val(grid, mismatch = 0):
-    for mul in (100, 1):
+    for w in (100, 1):
         for x in range(1, len(grid)):
             top = grid[:x][::-1]
             bottom = grid[x:]
-            if sum(sum(e1 != e2 for e1, e2 in zip(tl, bl)) for tl, bl in zip(top, bottom)) == mismatch:
-                return mul * x
+            if sum(sum(a != b for a, b in zip(t, b)) for t, b in zip(top, bottom)) == mismatch:
+                return w * x
         grid = [list(line) for line in zip(*grid)]
     return 0
 
