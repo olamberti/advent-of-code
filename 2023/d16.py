@@ -9,8 +9,8 @@ for y, line in enumerate(open("d16.txt")):
         grid[x + y*1j] = ch
 width, height = x + 1, y + 1
 
-def energy(pos, d):
-    front, seen, lights = {(pos, d)}, set(), set()
+def energy(pos, dir):
+    front, seen, lights = {(pos, dir)}, set(), set()
     while front:
         new_front = set()
         for pos, d in front:
