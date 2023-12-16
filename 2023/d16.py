@@ -14,8 +14,7 @@ def energy(pos, d):
     while front:
         new_front = set()
         for pos, d in front:
-            if (pos, d) in seen: continue
-            if pos not in grid: continue
+            if pos not in grid or (pos, d) in seen: continue
             seen.add((pos, d))
             lights.add(pos)
             for new_d in mappings[grid[pos]][d]:
