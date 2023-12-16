@@ -3,7 +3,6 @@ mappings = {'.': {1:[1], -1:[-1], 1j:[1j], -1j:[-1j]},
             '-': {1:[1], -1:[-1], 1j:[1, -1], -1j:[1, -1]},
             '\\':{1:[1j], -1:[-1j], 1j:[1], -1j:[-1]},
             '/': {1:[-1j], -1:[1j], 1j:[-1], -1j:[1]}}
-
 grid = {}
 for y, line in enumerate(open("d16.txt")):
     for x, ch in enumerate(line.strip()):
@@ -16,7 +15,7 @@ def energy(pos, d):
         new_front = set()
         for pos, d in front:
             if (pos, d) in seen: continue
-            if pos.real < 0 or pos.imag < 0 or pos.real >= width or pos.imag >= height: continue
+            if pos not in grid: continue
             seen.add((pos, d))
             lights.add(pos)
             for new_d in mappings[grid[pos]][d]:
