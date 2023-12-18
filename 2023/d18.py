@@ -18,8 +18,8 @@ for line in open('d18.txt'):
 def schoelace(edges): # Schoelace formula for area
     return abs(sum(edges[i][0] * (edges[(i+1)%len(edges)][1] - edges[(i-1)][1]) for i in range(len(edges)))) // 2
 
-def solve(edges, b): # correction for the edges
+def area(edges, b): # correction for the edges
     return schoelace(edges) + b // 2 + 1
 
-print(solve(v1, b1))
-print(solve(v2, b2))
+print(area(v1, b1))
+print(area(v2, b2))
