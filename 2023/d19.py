@@ -15,8 +15,7 @@ def sortpart(x, m, a, s, workflow = 'in'):
     for rule in workflows[workflow]:
         if ':' in rule: 
             cond, tar = rule.split(':')
-            if eval(cond):
-                return sortpart(x, m, a, s, tar)
+            if eval(cond): return sortpart(x, m, a, s, tar)
             else: continue
         else: return sortpart(x, m, a, s, rule)
 
@@ -24,8 +23,7 @@ def sortpart(x, m, a, s, workflow = 'in'):
 p1 = 0
 for part in ps.split('\n'):
     x, m, a, s = [int(x) for x in re.findall(r'(\d+)', part)]
-    if sortpart(x, m, a, s):
-        p1 += sum([x, m, a, s])
+    if sortpart(x, m, a, s): p1 += sum([x, m, a, s])
 print(p1)
 
 # Part 2
