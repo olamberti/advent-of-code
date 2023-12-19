@@ -29,13 +29,10 @@ for part in ps.split('\n'):
 print(p1)
 
 # Part 2
-def prod(ranges):
-    return math.prod(v[1] - v[0] + 1 for v in ranges.values())
-
 def sortrange(ranges, workflow = 'in'):
     if workflow == 'R': return 0
-    if workflow == 'A': return prod(ranges)
-    
+    if workflow == 'A': return math.prod(v[1] - v[0] + 1 for v in ranges.values())
+
     accepted = 0
     for rule in workflows[workflow]:
         if ':' in rule: 
