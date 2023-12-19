@@ -2,12 +2,12 @@ import re
 import math
 
 ws, ps = open('d19.txt').read().split('\n\n')
-
 workflows = {}
 for line in ws.split('\n'):
     name, rule = line.split('{')
     workflows[name] = rule[:-1].split(',')
 
+# Part 1
 def sortpart(x, m, a, s, workflow = 'in'):
     if workflow == 'R': return False
     if workflow == 'A': return True
@@ -19,7 +19,6 @@ def sortpart(x, m, a, s, workflow = 'in'):
             else: continue
         else: return sortpart(x, m, a, s, rule)
 
-# Part 1
 p1 = 0
 for part in ps.split('\n'):
     x, m, a, s = [int(x) for x in re.findall(r'(\d+)', part)]
@@ -43,15 +42,12 @@ def sortrange(ranges, workflow = 'in'):
             else:
                 okay = (val + 1, high)
                 not_okay = (low, val)
-            if okay[0] <= okay[1]:
-                new_ranges = dict(ranges)
-                new_ranges[var] = okay
-                accepted += sortrange(new_ranges, tar)
-            if not_okay[0] <= not_okay[1]:
-                ranges[var] = not_okay
-            else: break
+            new_ranges = dict(ranges)
+            new_ranges[var] = okay
+            accepted += sortrange(new_ranges, tar)
+            ranges[var] = not_okay
         else: accepted += sortrange(ranges, rule)
     return accepted
 
-ranges = {cat: (1, 4000) for cat in 'xmas'}
+ranges = {var: (1, 4000) for var in 'xmas'}
 print(sortrange(ranges))
