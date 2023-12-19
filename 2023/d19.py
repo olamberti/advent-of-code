@@ -43,13 +43,10 @@ def sortrange(ranges, workflow = 'in'):
             else:
                 okay = (val + 1, high)
                 not_okay = (low, val)
-            if okay[0] <= okay[1]:
-                new_ranges = dict(ranges)
-                new_ranges[var] = okay
-                accepted += sortrange(new_ranges, tar)
-            if not_okay[0] <= not_okay[1]:
-                ranges[var] = not_okay
-            else: break
+            new_ranges = dict(ranges)
+            new_ranges[var] = okay
+            accepted += sortrange(new_ranges, tar)
+            ranges[var] = not_okay
         else: accepted += sortrange(ranges, rule)
     return accepted
 
