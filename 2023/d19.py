@@ -38,7 +38,7 @@ def sortrange(ranges, workflow = 'in'):
         if ':' in rule: 
             cond, tar = rule.split(':')
             var, rel, val = cond[0], cond[1], int(cond[2:])
-            low, high = ranges[cond[0]]
+            low, high = ranges[var]
             if rel == '<':
                 okay = (low, val - 1)
                 not_okay = (val, high)
