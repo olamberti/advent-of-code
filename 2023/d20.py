@@ -11,9 +11,7 @@ class Module:
         else:
             self.memory = {}
 
-    def __repr__(self):
-        return f'{self.type} {self.targets} {self.memory}'
-
+# Load input, create modules and collect memories for &-modules
 modules = {}
 for line in open('d20.txt'):
     name, targets = line.strip().split(' -> ')
@@ -28,6 +26,7 @@ for name, module in modules.items():
             modules[target].memory[name] = 'low'
 copy = dc(modules)
 
+# Communication handler function
 def communicate(pulse, sender, receiver):
     global pulses, modules
     module = modules[receiver]
