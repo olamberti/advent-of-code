@@ -6,10 +6,7 @@ class Module:
     def __init__(self, type, targets):
         self.type = type
         self.targets = targets
-        if type == '%':
-            self.memory = 'off'
-        else:
-            self.memory = {}
+        self.memory = 'off' if type == '%' else {}
 
 # Load input, create modules and collect memories for &-modules
 modules = {}
@@ -45,7 +42,7 @@ def communicate(pulse, sender, receiver):
         message = 'low' if all(v == 'high' for v in module.memory.values()) else 'high'
         for target in module.targets: pulses.append((message, receiver, target))
 
-# Part1
+# Part 1
 low, high = 0, 0
 for _ in range(1000):
     pulses = dq([('low', 'button', 'broadcaster')])
@@ -57,9 +54,9 @@ for _ in range(1000):
         communicate(pulse, sender, receiver)
 print(low * high)
 
-# Part2
+# Part 2
 steps, modules = 0, copy
-source = [name for name, module in modules.items() if 'rx' in module.targets][0]
+(source,) = [name for name, module in modules.items() if 'rx' in module.targets]
 required = {name: 0 for name, module in modules.items() if source in module.targets}
 
 while any(v == 0 for v in required.values()):
@@ -69,6 +66,6 @@ while any(v == 0 for v in required.values()):
         pulse, sender, receiver = pulses.popleft()
         if receiver not in modules: continue
         if receiver == source and pulse == 'high':
-            if required[sender] ==  0: required[sender] = steps
+            if required[sender] == 0: required[sender] = steps
         communicate(pulse, sender, receiver)
 print(math.lcm(*required.values()))
