@@ -33,7 +33,7 @@ def communicate(pulse, sender, receiver):
     if receiver == 'broadcaster':
         for target in module.targets: pulses.append((pulse, receiver, target))
     elif module.type == '%':
-        if pulse == 'high': return 0
+        if pulse == 'high': return
         if module.memory == 'off':
             module.memory = 'on'
             for target in module.targets: pulses.append(('high', receiver, target))
@@ -52,7 +52,7 @@ for _ in range(1000):
     while pulses:
         pulse, sender, receiver = pulses.popleft()
         if pulse == 'low': low += 1
-        elif pulse == 'high': high += 1
+        else: high += 1
         if receiver not in modules: continue
         communicate(pulse, sender, receiver)
 print(low * high)
