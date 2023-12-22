@@ -1,46 +1,29 @@
-rocks = set()
-
-for y, line in enumerate(open('d21.txt')):
-    for x, ch in enumerate(line.strip()):
-        if ch == '#':
-            rocks.add((x, y))
-            continue
-        elif ch == 'S': start = ((x, y))
-height, width = y + 1, x + 1
+grid = [line.strip() for line in open('d21.txt')]
+rocks = {(x, y) for y, line in enumerate(grid) for x, ch in enumerate(line.strip()) if ch == '#'}
+start = next((x, y) for y, line in enumerate(grid) for x, ch in enumerate(line.strip()) if ch == 'S')
+height, width = len(grid), len(grid[0])
 size = height if height == width else None
 
-# Part 1
-front = {start}
-for step in range(64):
+# Part 1 - BFS for creating distance map on original grid
+front, steps, distmap = {start}, 0, {start: 0}
+while front:
+    steps += 1
     new_front = set()
     for x, y in front:
         for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
             nx, ny = x + dx, y + dy 
-            if (nx, ny) in rocks: continue
+            if nx < 0 or nx >= width or ny < 0 or ny >= height: continue
+            if (nx, ny) in rocks or (nx, ny) in distmap: continue
+            distmap[(nx, ny)] = steps
             new_front.add((nx, ny))
     front = new_front
-print(len(front))
+print(len([pos for pos, step in distmap.items() if step <= 64 and step % 2 == 0]))
 
-# Part 2
-front = {start}
-seen, odd, v = set(), set(), []
-for s in range(1, (size - 1) // 2 + 4 * size + 1):
-    new_front = set()
-    for x, y in front:
-        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            nx, ny = x + dx, y + dy 
-            if (nx % size, ny % size) in rocks: continue
-            if (nx, ny) in seen: continue
-            new_front.add((nx, ny))
-            seen.add((nx, ny))
-            if s % 2 == 1: odd.add((nx, ny))
-    front = new_front
-    if (s - (size - 1) // 2) % (2 * size) == 0:
-            v.append(len(odd))
-
+# Part 2 - geometrical solution true after every 2nd step
 N = 26501365
-c = v[0]
-b = 2 * v[1] - (v[2] + 3 * v[0]) // 2
-a = (v[2] + v[0]) // 2 - v[1]
-x = (N - (size - 1) // 2) // (2 * size)
-print(a * (x ** 2)+ b * x + c)
+n = (N - (size - 1) // 2) // size
+tile_odd = len([pos for pos, step in distmap.items() if step % 2 == 1])
+tile_even = len([pos for pos, step in distmap.items() if step % 2 == 0])
+triang_odd = len([pos for pos, step in distmap.items() if step > 65 and step % 2 == 1])
+triang_even = len([pos for pos, step in distmap.items() if step > 65 and step % 2 == 0])
+print((n + 1)**2 * tile_odd + n**2 * tile_even + n * triang_even - (n + 1) * triang_odd)
