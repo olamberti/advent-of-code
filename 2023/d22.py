@@ -1,55 +1,53 @@
 import re
 from collections import deque as dq
-from copy import deepcopy as dc
 
+# Load input
 bricks = []
 for line in open('d22.txt'):
-    xs, ys, zs, xe, ye, ze = [int(x) for x in re.findall(r'(\d+)', line)]
-    bricks.append(((xs, ys, zs), (xe, ye, ze)))
+    bricks.append([int(x) for x in re.findall(r'(\d+)', line)])
 
-def is_under(upper, lower):
-    if (upper[0][0] > lower[1][0] or upper[1][0] < lower[0][0]) or (upper[0][1] > lower[1][1] or upper[1][1] < lower[0][1]): return None
-    return upper[0][2] - lower[1][2]
+# Function that checks overlap and gives the z distance if there is any
+def is_under(upper, lower): 
+    if (max(upper[0], lower[0]) > min(upper[3], lower[3]) or
+        max(upper[1], lower[1]) > min(upper[4], lower[4])): return None
+    return upper[2] - lower[5]
 
-def drop(bricks):
-    bricks.sort(key = lambda v: v[0][2])
-    supports, fallen = {}, 0
-    for i, brick in enumerate(bricks):
-        min_dist, supports[i] = brick[0][2], []
-        if brick[0][2] == 1: 
-            supports[i].append(-1)
-            continue
-        for j, lower in enumerate(bricks[:i]):
-            dist = is_under(brick, lower)
-            if dist is None: continue
-            if dist < min_dist:
-                min_dist = dist
-                supports[i] = [j]
-            elif dist == min_dist:
-                supports[i].append(j)
-        if min_dist > 1: fallen += 1
-        bricks[i] = ((brick[0][0], brick[0][1], brick[0][2] - min_dist + 1), (brick[1][0], brick[1][1], brick[1][2] - min_dist + 1))
-    return bricks, supports, fallen
+# Let bricks fall
+bricks.sort(key = lambda v: v[2])
+supports = {}
+for i, brick in enumerate(bricks):
+    min_dist, supports[i] = brick[2], set()
+    if brick[2] == 1: continue
+    for j, lower in enumerate(bricks[:i]):
+        dist = is_under(brick, lower)
+        if dist is None: continue
+        if dist < min_dist:
+            min_dist = dist
+            supports[i] = {j}
+        elif dist == min_dist:
+            supports[i].add(j)
+    brick[2] += 1 - min_dist
+    brick[5] += 1 - min_dist
 
-new_bricks, supports, f = drop(dc(bricks))
+# Part 1
 disintegrate = set(supports.keys())
 for lowers in supports.values():
     if len(lowers) == 1:
-        unique = lowers[0]
-        if unique in disintegrate: disintegrate.remove(unique)
+        disintegrate -= lowers
 print(len(disintegrate))
 
+# Part 2
 total = 0
-for brick in supports.keys():
-    supp = dc(supports)
-    chain = dq([brick])
-    fall = 0
+for i, brick in enumerate(bricks):
+    chain = dq(j for j, supps in supports.items() if i in supps and len(supps) == 1)
+    fallen = set(chain)
+    fallen.add(i)
     while chain:
-         id = chain.popleft()
-         fall += 1
-         for elem, lowers in supp.items():
-             if id in lowers: lowers.remove(id)
-             else: continue
-             if len(lowers) == 0: chain.append(elem)
-    total += fall - 1
+        drop = chain.popleft()
+        for sus, supps in supports.items():
+            if sus in fallen or len(supps) == 0: continue
+            if supps.issubset(fallen):
+                chain.append(sus)
+                fallen.add(sus)
+    total += len(fallen) - 1
 print(total)
