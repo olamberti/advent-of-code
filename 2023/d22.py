@@ -6,13 +6,13 @@ bricks = []
 for line in open('d22.txt'):
     bricks.append([int(x) for x in re.findall(r'(\d+)', line)])
 
-# Function that checks overlap and gives the z distance if there is any
+# Function that checks overlap in x & y dimensions and gives the z distance if there is any
 def is_under(upper, lower): 
-    if (max(upper[0], lower[0]) > min(upper[3], lower[3]) or
-        max(upper[1], lower[1]) > min(upper[4], lower[4])): return None
+    if (max(upper[0], lower[0]) > min(upper[3], lower[3]) or max(upper[1], lower[1]) > min(upper[4], lower[4])):
+        return None
     return upper[2] - lower[5]
 
-# Let bricks fall
+# Let bricks fall and store which bricks they fell on
 bricks.sort(key = lambda v: v[2])
 supports = {}
 for i, brick in enumerate(bricks):
