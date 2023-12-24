@@ -38,5 +38,6 @@ eq6 = sympy.Eq(pzr + vzr * t1, pz1 + vz1 * t1)
 eq7 = sympy.Eq(pxr + vxr * t2, px2 + vx2 * t2)
 eq8 = sympy.Eq(pyr + vyr * t2, py2 + vy2 * t2)
 eq9 = sympy.Eq(pzr + vzr * t2, pz2 + vz2 * t2)
+# Solution and answer
 sol = sympy.solve([eq1, eq2, eq3, eq4, eq5, eq6, eq7, eq8, eq9], [pxr, pyr, pzr, vxr, vyr, vzr, t0, t1, t2])
 print(sum(sol[0][:3]))
