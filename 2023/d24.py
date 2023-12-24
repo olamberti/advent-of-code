@@ -18,13 +18,13 @@ for i, (px1, py1, _, vx1, vy1, _) in enumerate(hailstones):
                 total += 1
 print(total)
 
-# Part 2 - Setting up a system of equations for the first three stones (9 equations, 9 unknowns)
+# Part 2 - Setting up a system of equations with the first three stones (9 equations, 9 unknowns)
 pxr, pyr, pzr, vxr, vyr, vzr, t0, t1, t2 = sympy.symbols('pxr pyr pzr vxr vyr vzr t0 t1 t2')
 equations, t = [], [t0, t1, t2]
 for i, (px, py, pz, vx, vy, vz) in enumerate(hailstones[:3]):
     equations.append(sympy.Eq(pxr + vxr * t[i], px + vx * t[i])) # x direction
     equations.append(sympy.Eq(pyr + vyr * t[i], py + vy * t[i])) # y direction
     equations.append(sympy.Eq(pzr + vzr * t[i], pz + vz * t[i])) # z direction
-# Solve equation and calculate sum of position
+# Solve equation system and calculate sum of position
 sol = sympy.solve(equations, [pxr, pyr, pzr, vxr, vyr, vzr, t0, t1, t2])
 print(sum(sol[0][:3]))
