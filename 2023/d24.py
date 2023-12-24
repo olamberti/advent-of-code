@@ -15,7 +15,7 @@ for i, hs1 in enumerate(hailstones):
         if a == b and c != d: continue # parallel, not equal
         x = (d - c) / (a - b)
         y = a * x + c
-        if low <= x <= high and low <= y <= high: # in range and both positive time
+        if low <= x <= high and low <= y <= high: # in range
             if (((x > px1 and vx1 > 0) or (x < px1 and vx1 < 0)) and # positive time for #1
                 ((x > px2 and vx2 > 0) or (x < px2 and vx2 < 0))):   # positive time for #2
                 total += 1
