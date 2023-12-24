@@ -12,12 +12,11 @@ for i, hs1 in enumerate(hailstones):
         px2, py2, _, vx2, vy2, _ = hs2
         a, b = vy1 / vx1, vy2 / vx2
         c, d = py1 - a * px1, py2 - b * px2
-        if a == b and c != d: continue # parallel, not equal
+        if a == b and c != d: continue # parallel and not equal lines
         x = (d - c) / (a - b)
         y = a * x + c
         if low <= x <= high and low <= y <= high: # in range
-            if (((x > px1 and vx1 > 0) or (x < px1 and vx1 < 0)) and # positive time for #1
-                ((x > px2 and vx2 > 0) or (x < px2 and vx2 < 0))):   # positive time for #2
+            if (vx1 * (x - px1) > 0 and vx2 * (x - px2) > 0): # positive time for both stones
                 total += 1
 print(total)
 
@@ -38,6 +37,6 @@ eq6 = sympy.Eq(pzr + vzr * t1, pz1 + vz1 * t1)
 eq7 = sympy.Eq(pxr + vxr * t2, px2 + vx2 * t2)
 eq8 = sympy.Eq(pyr + vyr * t2, py2 + vy2 * t2)
 eq9 = sympy.Eq(pzr + vzr * t2, pz2 + vz2 * t2)
-# Solution and answer
+# Solve equation and calculate sum of position
 sol = sympy.solve([eq1, eq2, eq3, eq4, eq5, eq6, eq7, eq8, eq9], [pxr, pyr, pzr, vxr, vyr, vzr, t0, t1, t2])
 print(sum(sol[0][:3]))
