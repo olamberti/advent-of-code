@@ -8,8 +8,8 @@ hailstones = [tuple(int(x) for x in re.findall(r'(-?\d+)', line)) for line in op
 total = 0
 for i, hs1 in enumerate(hailstones):
     for hs2 in hailstones[i+1:]:
-        px1, py1, pz1, vx1, vy1, vz1 = hs1
-        px2, py2, pz2, vx2, vy2, vz2 = hs2
+        px1, py1, _, vx1, vy1, _ = hs1
+        px2, py2, _, vx2, vy2, _ = hs2
         a, b = vy1 / vx1, vy2 / vx2
         c, d = py1 - a * px1, py2 - b * px2
         if a == b and c != d: continue # parallel, not equal
