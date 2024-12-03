@@ -10,5 +10,5 @@ print(p1)
 
 p2, input = 0, input.split('do()')
 for s in input:
-    p2 += add_muls(s.split('don' + "'" + 't')[0])
+    p2 += add_muls(s.split("don't()")[0])
 print(p2)
