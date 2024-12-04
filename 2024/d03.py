@@ -2,9 +2,9 @@ import re
 input = open('d03.txt').read()
 
 def add_muls(s):
-    muls = re.findall(r'mul\((\d+),(\d+)\)', s)
+    muls = re.findall(r'mul\((\d{1,3}),(\d{1,3})\)', s)
     return sum([int(x) * int(y) for (x, y) in muls])
-   
+ 
 p1 = add_muls(input)
 print(p1)
 

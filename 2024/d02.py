@@ -1,5 +1,5 @@
-def is_safe(num):
-    return num <= {1, 2, 3} or num <= {-1, -2, -3}
+def is_safe(vals):
+    return vals <= {1, 2, 3} or vals <= {-1, -2, -3}
 
 p1, p2= 0, 0
 
