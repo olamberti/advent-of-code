@@ -1,10 +1,10 @@
 from collections import defaultdict
-data, updates = open('d05.txt').read().split('\n\n')
+data, pages = open('d05.txt').read().split('\n\n')
 
 rules = defaultdict(list)
 for row in data.splitlines():
-    first, second = map(int, row.split('|'))
-    rules[first].append(second)
+    a, b = row.split('|')
+    rules[a].append(b)
 
 def is_right(vals):
     for v in vals:
@@ -14,18 +14,18 @@ def is_right(vals):
     return True
 
 p1, p2 = 0, 0
-for row in updates.splitlines():
-    update = list(map(int, row.split(',')))
-    if is_right(update):
-        p1 += update[len(update)//2]
+for page in pages.splitlines():
+    page = page.split(',')
+    if is_right(page):
+        p1 += int(page[len(page)//2])
     else:
-        while not is_right(update):
-            for v in update:
+        while not is_right(page):
+            for v in page:
                     for larger in rules[v]:
-                        if larger in update and update.index(larger) < update.index(v):
-                            update.remove(v)
-                            update.insert(update.index(larger), v)
-        p2 += update[len(update)//2]
+                        if larger in page and page.index(larger) < page.index(v):
+                            page.remove(v)
+                            page.insert(page.index(larger), v)
+        p2 += int(page[len(page)//2])
 
 print(p1)
 print(p2)
