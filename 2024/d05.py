@@ -1,15 +1,13 @@
-from collections import defaultdict
 data, pages = open('d05.txt').read().split('\n\n')
 
-rules = defaultdict(list)
-for row in data.splitlines():
-    a, b = row.split('|')
-    rules[a].append(b)
-
+rules = set()
+for line in data.splitlines():
+    rules.add(tuple(line.split('|')))
+    
 def is_right(vals):
-    for v in vals:
-        for larger in rules[v]:
-            if larger in vals and vals.index(larger) < vals.index(v):
+    for i in range(len(vals)):
+        for j in range(i + 1, len(vals)):
+            if (vals[j], vals[i]) in rules:
                 return False
     return True
 
@@ -18,14 +16,13 @@ for page in pages.splitlines():
     page = page.split(',')
     if is_right(page):
         p1 += int(page[len(page)//2])
-    else:
-        while not is_right(page):
-            for v in page:
-                    for larger in rules[v]:
-                        if larger in page and page.index(larger) < page.index(v):
-                            page.remove(v)
-                            page.insert(page.index(larger), v)
-        p2 += int(page[len(page)//2])
+        continue
+    while not is_right(page):
+        for i in range(len(page)):
+            for j in range(i + 1, len(page)):
+                if (page[j], page[i]) in rules:
+                    page[i], page[j] = page[j], page[i]            
+    p2 += int(page[len(page)//2])
 
 print(p1)
 print(p2)
