@@ -1,8 +1,7 @@
-dirs = {'>': 1, 'v': 1j, '<': -1, '^': -1j}
 grid = {x + y*1j: e for y, line in enumerate(open('d06.txt').readlines()) for x, e in enumerate(line.strip())}
 for k, v in grid.items():
-    if v in dirs:
-        pos, d = k, dirs[v]
+    if v not in '.#':
+        pos, d = k, {'>': 1, 'v': 1j, '<': -1, '^': -1j}[v]
         break
 
 paths, cache, obstacles = set(), set(), set()
