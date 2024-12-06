@@ -6,8 +6,6 @@ for y, line in enumerate(open('d06.txt').readlines()):
         elif e in dirs.keys(): 
             pos = x + y*1j
             dir = dirs[e]
-            paths.add(pos)
-            cache.add((pos, dir))
 W, H = x, y
 
 def in_bounds(p):
@@ -15,14 +13,17 @@ def in_bounds(p):
 
 obstacles = set()
 while in_bounds(pos):
+    paths.add(pos)
+    cache.add((pos, dir))
     if (pos + dir) in walls:
         dir *= 1j
     else:
         obs = pos + dir
-        if in_bounds(obs) and (obs) not in paths:
+        if obs not in paths and in_bounds(obs):
             new_cache = cache.copy()
             n_pos, n_dir= pos, dir * 1j
             while in_bounds(n_pos):
+                new_cache.add((n_pos, n_dir))
                 if (n_pos + n_dir) in walls or (n_pos + n_dir) == obs:
                     n_dir *= 1j
                 else:
@@ -30,9 +31,6 @@ while in_bounds(pos):
                 if (n_pos, n_dir) in new_cache:
                     obstacles.add(obs)
                     break
-                new_cache.add((n_pos, n_dir))
-        paths.add(pos)
-        cache.add((pos, dir))
         pos += dir  
 
 print(len(paths))
