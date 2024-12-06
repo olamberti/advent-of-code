@@ -1,4 +1,4 @@
-walls, paths, cache, dirs = set(), set(), set(), {'>': 1, 'v': 1j, '<': -1,'^': -1j}
+walls, dirs = set(), {'>': 1, 'v': 1j, '<': -1,'^': -1j}
 
 for y, line in enumerate(open('d06.txt').readlines()):
     for x, e in enumerate(line.strip()):
@@ -11,7 +11,7 @@ W, H = x, y
 def in_bounds(p):
     return 0 <= p.real <= W and 0 <= p.imag <= H
 
-obstacles = set()
+paths, cache, obstacles = set(), set(), set()
 while in_bounds(pos):
     paths.add(pos)
     cache.add((pos, dir))
