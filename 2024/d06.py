@@ -1,37 +1,29 @@
-walls, dirs = set(), {'>': 1, 'v': 1j, '<': -1,'^': -1j}
-
-for y, line in enumerate(open('d06.txt').readlines()):
-    for x, e in enumerate(line.strip()):
-        if e == '#': walls.add(x + y*1j)
-        elif e in dirs.keys(): 
-            pos = x + y*1j
-            dir = dirs[e]
-W, H = x, y
-
-def in_bounds(p):
-    return 0 <= p.real <= W and 0 <= p.imag <= H
+dirs = {'>': 1, 'v': 1j, '<': -1, '^': -1j}
+grid = {x + y*1j: e for y, line in enumerate(open('d06.txt').readlines()) for x, e in enumerate(line.strip())}
+for k, v in grid.items():
+    if v in dirs:
+        pos, d = k, dirs[v]
+        break
 
 paths, cache, obstacles = set(), set(), set()
-while in_bounds(pos):
-    paths.add(pos)
-    cache.add((pos, dir))
-    if (pos + dir) in walls:
-        dir *= 1j
+while pos in grid:
+    paths.add(pos), cache.add((pos, d))
+    if grid.get(pos + d) == '#':
+        d *= 1j
     else:
-        obs = pos + dir
-        if obs not in paths and in_bounds(obs):
-            new_cache = cache.copy()
-            n_pos, n_dir= pos, dir * 1j
-            while in_bounds(n_pos):
-                new_cache.add((n_pos, n_dir))
-                if (n_pos + n_dir) in walls or (n_pos + n_dir) == obs:
-                    n_dir *= 1j
+        obs = pos + d
+        if obs in grid and obs not in paths:
+            n_pos, n_d, n_cache = pos, d * 1j, cache.copy()
+            while n_pos in grid:
+                n_cache.add((n_pos, n_d))
+                if grid.get(n_pos + n_d) == '#' or (n_pos + n_d) == obs:
+                    n_d *= 1j
                 else:
-                    n_pos += n_dir
-                if (n_pos, n_dir) in new_cache:
+                    n_pos += n_d
+                if (n_pos, n_d) in n_cache:
                     obstacles.add(obs)
                     break
-        pos += dir  
+        pos += d
 
 print(len(paths))
 print(len(obstacles))
