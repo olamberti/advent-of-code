@@ -1,9 +1,9 @@
 def check_result(result, vals, p2 = False):
     combs = [vals[0]]
-    for v in vals[1:]:
+    for v2 in vals[1:]:
         new_combs = []
-        for c in combs:
-            a, b, c = c + v, c * v, int(str(c) + str(v))
+        for v1 in combs:
+            a, b, c = v1 + v2, v1 * v2, int(str(v1) + str(v2))
             if a <= result: new_combs.append(a)
             if b <= result: new_combs.append(b)
             if c <= result and p2: new_combs.append(c)
