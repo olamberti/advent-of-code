@@ -3,20 +3,16 @@ def check_result(result, vals, p2 = False):
         return vals[0] == result
     
     last = vals[-1]
-    
-    add = check_result(result - last, vals[:-1], p2)
 
     if result % last == 0:
-        mul = check_result(result // last, vals[:-1], p2)
-    else:
-        mul = False
-    
+        if check_result(result // last, vals[:-1], p2):
+            return True
+
     if p2 and str(result)[-len(str(last)):] == str(last):
-        con = check_result((result - last) // pow(10, len(str(last))), vals[:-1], p2)
-    else:
-        con = False
-        
-    return add or mul or con
+         if check_result((result - last) // pow(10, len(str(last))), vals[:-1], p2):
+            return True
+
+    return check_result(result - last, vals[:-1], p2)  
     
 p1, p2 = 0, 0
 for line in open('d07.txt').read().splitlines():
