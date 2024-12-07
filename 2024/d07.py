@@ -1,14 +1,22 @@
 def check_result(result, vals, p2 = False):
-    combs = [vals[0]]
-    for v2 in vals[1:]:
-        new_combs = []
-        for v1 in combs:
-            a, b, c = v1 + v2, v1 * v2, int(str(v1) + str(v2))
-            if a <= result: new_combs.append(a)
-            if b <= result: new_combs.append(b)
-            if c <= result and p2: new_combs.append(c)
-        combs = new_combs
-    return result in combs
+    if len(vals) == 1:
+        return vals[0] == result
+    
+    last = vals[-1]
+    
+    add = check_result(result - last, vals[:-1], p2)
+
+    if result % last == 0:
+        mul = check_result(result // last, vals[:-1], p2)
+    else:
+        mul = False
+    
+    if p2 and str(result)[-len(str(last)):] == str(last):
+        con = check_result((result - last) // pow(10, len(str(last))), vals[:-1], p2)
+    else:
+        con = False
+        
+    return add or mul or con
     
 p1, p2 = 0, 0
 for line in open('d07.txt').read().splitlines():
