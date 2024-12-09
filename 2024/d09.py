@@ -1,16 +1,18 @@
-diskmap = [*map(int, open('d09.txt').read())]
+from collections import defaultdict
 
-blocks, files, free, pos = [None] * sum(diskmap), {}, [], 0
+diskmap = [*map(int, open('d09.txt').read())]
+blocks, files, free = [], {}, defaultdict(list)
+
+pos = 0
 for i, x in enumerate(diskmap):
-    v = i // 2 if i % 2 == 0 else None
+    id = i // 2 if i % 2 == 0 else None
+    blocks += [id] * x
     if x:
         if i % 2 == 0:
-            files[v] = (pos, x)
+            files[id] = (pos, x)
         else:
-            free.append((pos, x))
-        for n in range(x):
-            blocks[pos] = v
-            pos += 1
+            free[x].append(pos)
+        pos += x
 
 # Part 1
 checksum, last = 0, len(blocks) - 1
@@ -26,18 +28,18 @@ print(checksum)
 
 # Part 2
 for id in sorted(list(files.keys()), reverse=True):
-    start, size = files[id]
-    for i, (pos, length) in enumerate(free):
-        if pos > start:
-            free = free[:i]
-            break
-        if length >= size:
-            files[id] = (pos, size)
-            if size == length:
-                free.pop(i)
-            else:
-                free[i] = (pos + size, length - size)
-            break
+    start, size, pos = *files[id], float('inf')
+    for length in range(size, 10):
+        if free[length] and free[length][0] < pos:
+            pos = free[length][0]
+            space = length
+    if pos < start:
+        files[id] = (pos, size)
+        free[space].pop(0)
+        rem = space - size
+        if rem:
+            free[rem].append(pos + size)
+            free[rem].sort()
 
 checksum = 0
 for id, [pos, size] in files.items():
