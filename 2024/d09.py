@@ -6,11 +6,11 @@ for i, x in enumerate(diskmap):
     id = i // 2 if i % 2 == 0 else None
     blocks += [id] * x
     if x:
-        if i % 2 == 0:
+        if id is not None:
             files[id] = (pos, x)
         else:
             free[x].append(pos)
-        pos += x
+    pos += x
 
 # Part 1
 checksum = 0
