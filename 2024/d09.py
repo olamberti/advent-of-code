@@ -1,15 +1,14 @@
 diskmap = [*map(int, open('d09.txt').read())]
 
-blocks, files, free = [None] * sum(diskmap), {}, {}
-pos = 0
-for i in range(len(diskmap)):
+blocks, files, free, pos = [None] * sum(diskmap), {}, [], 0
+for i, x in enumerate(diskmap):
     v = i // 2 if i % 2 == 0 else None
-    if diskmap[i]:
+    if x:
         if i % 2 == 0:
-            files[v] = [pos, diskmap[i]]
+            files[v] = (pos, x)
         else:
-            free[pos] = diskmap[i]
-        for n in range(diskmap[i]):
+            free.append((pos, x))
+        for n in range(x):
             blocks[pos] = v
             pos += 1
 
@@ -28,14 +27,16 @@ print(checksum)
 # Part 2
 for id in sorted(list(files.keys()), reverse=True):
     start, size = files[id]
-    if all(x < size for x in free.values()):
-        continue
-    for pos in sorted(free.keys()):
-        if free[pos] >= size and pos < start:
-            files[id] = [pos, size]
-            rem = free.pop(pos) - size
-            if rem:
-                free[pos + size] = rem
+    for i, (pos, length) in enumerate(free):
+        if pos > start:
+            free = free[:i]
+            break
+        if length >= size:
+            files[id] = (pos, size)
+            if size == length:
+                free.pop(i)
+            else:
+                free[i] = (pos + size, length - size)
             break
 
 checksum = 0
