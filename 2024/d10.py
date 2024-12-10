@@ -1,7 +1,7 @@
 grid = {x + y*1j : int(val) for y, line in enumerate(open('d10.txt'))
                             for x, val in enumerate(line.strip())}
-
 target, paths, = 1, [(p, ) for p, val in grid.items() if val == 0]
+
 while target <= 9 and paths:
     new_paths = set()
     for path in paths:
@@ -12,8 +12,5 @@ while target <= 9 and paths:
     paths = new_paths
     target += 1
 
-p1 = len(set([(path[0], path[-1]) for path in paths]))
-p2 = len(paths)
-
-print(p1)
-print(p2)
+print(len(set([(path[0], path[-1]) for path in paths])))
+print(len(paths))
