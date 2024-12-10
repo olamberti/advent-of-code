@@ -1,9 +1,5 @@
-grid, trailheads = {}, set()
-for y, line in enumerate(open('d10.txt').readlines()):
-    for x, val in enumerate(line.strip()):
-        grid[x + y*1j] = int(val)
-        if val == '0':
-            trailheads.add(x + y*1j)
+grid = {x + y*1j : int(val) for y, line in enumerate(open('d10.txt').readlines()) for x, val in enumerate(line.strip())}
+trailheads = [p for p, val in grid.items() if val == 0]
 
 p1, p2 = 0, 0
 for start in trailheads:
