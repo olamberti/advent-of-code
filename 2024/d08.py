@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 antennas = defaultdict(list)
-for y, line in enumerate(open('d08.txt').readlines()):
+for y, line in enumerate(open('d08.txt')):
     for x, e in enumerate(line.strip()):
         if e != '.':
             antennas[e].append(x + y*1j)

@@ -3,7 +3,7 @@ def is_safe(vals):
 
 p1, p2= 0, 0
 
-for line in open('d02.txt').read().splitlines():
+for line in open('d02.txt').readlines():
     nums = [int(x) for x in line.split()]
     diffs = set([nums[i] - nums[i-1] for i in range(1, len(nums))])
     if is_safe(diffs):

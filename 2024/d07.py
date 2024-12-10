@@ -15,7 +15,7 @@ def check_result(result, vals, p2 = False):
     return check_result(result - last, vals[:-1], p2)  
     
 p1, p2 = 0, 0
-for line in open('d07.txt').read().splitlines():
+for line in open('d07.txt').readlines():
     result, vals = line.split(': ')
     result, vals = int(result), [int(x) for x in vals.split()]
     if check_result(result, vals):

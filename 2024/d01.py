@@ -1,6 +1,6 @@
 left, right = [], []
 
-for line in open('d01.txt').read().splitlines():
+for line in open('d01.txt').readlines():
     left_num, right_num = [int(x) for x in line.split()]
     left.append(left_num)
     right.append(right_num)

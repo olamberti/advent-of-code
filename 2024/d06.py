@@ -1,4 +1,5 @@
-grid = {x + y*1j: e for y, line in enumerate(open('d06.txt').readlines()) for x, e in enumerate(line.strip())}
+grid = {x + y*1j: e for y, line in enumerate(open('d06.txt'))
+                    for x, e in enumerate(line.strip())}
 for k, v in grid.items():
     if v not in '.#':
         pos, d = k, {'>': 1, 'v': 1j, '<': -1, '^': -1j}[v]
