@@ -1,4 +1,4 @@
-grid = {x + y*1j : int(val) for y, line in enumerate(open('d10.txt').readlines())
+grid = {x + y*1j : int(val) for y, line in enumerate(open('d10.txt'))
                             for x, val in enumerate(line.strip())}
 
 target, paths, = 1, [(p, ) for p, val in grid.items() if val == 0]
