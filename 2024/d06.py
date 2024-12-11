@@ -11,27 +11,19 @@ for y, line in enumerate(open('d06.txt')):
             pos = x + y*1j
             d = {'>': 1, 'v': 1j, '<': -1, '^': -1j}[e]
 
-def is_looping(pos, d):
+def has_loop(pos, d):
     cache = set()
     while pos in grid:
         x, y = int(pos.real), int(pos.imag)
-        if d.real:
-            if d == 1:
-                wall = min([w for w in walls_in_y[y] if w > x], default=None)
-            else:
-                wall = max([w for w in walls_in_y[y] if w < x], default=None)
-            if wall is not None:
-                pos = (wall - d) + y * 1j
-        if d.imag:
-            if d == 1j:
-                wall = min([w for w in walls_in_x[x] if w > y], default=None)
-            else:
-                wall = max([w for w in walls_in_x[x] if w < y], default=None)
-            if wall is not None:
-                pos = x + wall * 1j - d
-        d *= 1j
+        match d:
+            case 1:   wall = min([w for w in walls_in_y[y] if w > x], default=None)
+            case -1:  wall = max([w for w in walls_in_y[y] if w < x], default=None)
+            case 1j:  wall = min([w for w in walls_in_x[x] if w > y], default=None)
+            case -1j: wall = max([w for w in walls_in_x[x] if w < y], default=None)           
         if wall is None:
             return False
+        pos = (wall - d) + y * 1j if d.real else x + (wall * 1j - d)
+        d *= 1j
         if (pos, d) in cache:
             return True
         cache.add((pos, d))
@@ -39,14 +31,15 @@ def is_looping(pos, d):
 seen, obs = set(), set()
 while pos in grid:
     seen.add(pos)
-    if grid.get(pos + d) == '#':
+    next_pos = pos + d
+    if grid.get(next_pos) == '#':
         d *= 1j
     else:
-        if (pos + d) in grid and (pos + d) not in seen:
-            x, y = int(pos.real + d.real), int(pos.imag + d.imag)
+        if next_pos in grid and next_pos not in seen:
+            x, y = int(next_pos.real), int(next_pos.imag)
             walls_in_x[x].append(y), walls_in_y[y].append(x)
-            if is_looping(pos, d):
-                obs.add(pos + d)
+            if has_loop(pos, d):
+                obs.add(next_pos)
             walls_in_x[x].pop(), walls_in_y[y].pop()
         pos += d
 
