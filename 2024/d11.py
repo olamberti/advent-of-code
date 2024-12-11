@@ -1,18 +1,18 @@
-stones = {int(x): 1 for x in open('d11.txt').read().split()}
-cache = {0: (1,)}
+input = list(map(int, open('d11.txt').read().split()))
+stones, cache = {x: input.count(x) for x in input}, {0: (1,)}
 
 def split(n):
     if n in cache:
         return cache[n]
     s = str(n)
-    if len(s) % 2 == 0:
-        ans = (int(s[:len(s)//2]), int(s[len(s)//2:]))
+    if len(s) % 2:
+        ans = (n * 2024,) 
     else:
-        ans = (n * 2024,)
+        ans = (int(s[:len(s)//2]), int(s[len(s)//2:]))
     cache[n] = ans
     return ans
 
-for step in range(75):
+for step in range(2000):
     new_stones = {}
     for x, n in stones.items():
         for y in split(x):
