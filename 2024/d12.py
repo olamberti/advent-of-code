@@ -8,7 +8,7 @@ while grid:
     pos = next(iter(grid.keys()))
     plant = grid.pop(pos)
     # Part 1
-    dq, region, edges = deque([pos]), {pos}, {d: set() for d in dirs}
+    dq, region, edges = deque([pos]), {pos}, set()
     while dq:
         pos = dq.popleft()
         for d in dirs:
@@ -17,22 +17,10 @@ while grid:
                 dq.append(next_pos)
                 region.add(next_pos)
                 grid.pop(next_pos)
-            elif next_pos not in region:
-                edges[d].add(next_pos)
-    p1 += len(region) * sum([len(x) for x in edges.values()])
+    edges = {(pos, d) for d in dirs for pos in region if pos + d not in region}
+    p1 += len(region) * len(edges)
     # Part 2
-    sides = 0
-    for d, vals in edges.items():
-        while vals:
-            edge = vals.pop()
-            sides += 1
-            dq = deque([edge])
-            while dq:
-                pos = dq.popleft()
-                for next_pos in (pos + d*1j, pos - d*1j):
-                    if next_pos in vals:
-                        dq.append(next_pos)
-                        vals.remove(next_pos)
+    sides = len(edges - {(pos - d*1j, d) for pos, d in edges})
     p2 += len(region) * sides
 
 print(p1)
