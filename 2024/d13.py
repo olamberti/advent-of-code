@@ -12,8 +12,8 @@ def solve(x1, y1, x2, y2, t1, t2, part2 = False):
     return int(a * 3 + b)
 
 p1, p2 = 0, 0
-for rows in open('d13.txt').read().split('\n\n'):
-    data = [int(x) for s in rows.split('\n') for x in re.findall(r'(\d+)', s)]
+for s in open('d13.txt').read().split('\n\n'):
+    data = [int(x) for x in re.findall(r'(\d+)', s)]
     p1 += solve(*data)
     p2 += solve(*data, True)
 
