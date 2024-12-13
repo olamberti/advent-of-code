@@ -14,7 +14,7 @@ while grid:
         for d in dirs:
             next_pos = pos + d
             if next_pos in grid and grid[next_pos] == plant:
-                dq.append(next_pos)
+                dq.append(next_pos), 
                 region.add(next_pos)
                 grid.pop(next_pos)
     edges = {(pos, d) for d in dirs for pos in region if pos + d not in region}
