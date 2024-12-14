@@ -1,4 +1,5 @@
-import re, statistics
+import re
+from statistics import stdev
 
 W, H, ps, vs = 101, 103, [], []
 for line in open('d14.txt').readlines():
@@ -14,7 +15,7 @@ def safety_factor(ps):
     return q1 * q2 * q3 * q4
 
 def deviations(ps):
-    return (statistics.stdev([x for x, _ in ps]), statistics.stdev([y for _, y in ps]))
+    return (stdev([x for x, _ in ps]), stdev([y for _, y in ps]))
 
 def crt(a1, n1, a2, n2):
   if a1 < a2: a1, a2, n1, n2 = a2, a1, n2, n1
@@ -26,8 +27,7 @@ def crt(a1, n1, a2, n2):
     b = q[-2][2] - d * q[-1][2]
     q.append([r, a, b])
   m1, m2 = q[-2][1], q[-2][2]
-  x = (n2 * m1 * a1 + n1 * m2 * a2) % (a1 * a2)
-  return x
+  return (n2 * m1 * a1 + n1 * m2 * a2) % (a1 * a2)
 
 minx, miny, rx, ry = float('inf'), float('inf'), None, None
 for t in range(1, max(W, H) + 1):
