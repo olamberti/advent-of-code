@@ -1,80 +1,52 @@
-grid, moves = open('d15.txt').read().split('\n\n')
-grid, moves = grid.splitlines(), moves.replace('\n', '')
+top, bottom = open('d15.txt').read().split('\n\n')
+grid = {x + y * 1j: c for y, row in enumerate(top.splitlines())
+                      for x, c in enumerate(row)}
+moves = bottom.replace('\n', '')
 dirs = {'>': 1, '<': -1, '^': -1j, 'v': 1j}
-
-walls, boxes = set(), set()
-for y, row in enumerate(grid):
-    for x, cell in enumerate(row):
-        if cell == '#': walls.add(x + y * 1j)
-        if cell == 'O': boxes.add(x + y * 1j)
-        if cell == '@': pos = x + y * 1j
+pos, = (p for p in grid if grid[p] == '@')
 
 # Part 1
 for move in moves:
     d = dirs[move]
-    if pos + d in walls:
-        continue
-    elif pos + d in boxes:
+    if grid[pos + d] == '#': continue
+    if grid[pos + d] == 'O':
         npos = pos + d
-        while npos in boxes:
-            npos += d
-        if npos in walls:
-            continue
-        boxes.remove(pos + d)
-        boxes.add(npos)
-        pos += d        
-    else:
-        pos += d
+        while grid[npos] == 'O': npos += d
+        if grid[npos] == '#': continue
+        grid[npos] = 'O'
+    grid[pos], grid[pos + d] = '.', '@'
+    pos += d
 
-print(sum(int(food.real) + int(food.imag * 100) for food in boxes))
+print(sum([int(pos.real) + int(pos.imag * 100)
+           for pos in grid if grid[pos] == 'O']))
 
 # Part 2
-grid2, rp = [], {'.': '..', 'O': '[]', '#': '##', '@': '@.'}
-for line in grid:
-    for old, new in rp.items():
-        line = line.replace(old, new)
-    grid2.append(line)
-
-walls, boxes_left, boxes_right = set(), set(), set()
-for y, row in enumerate(grid2):
-    for x, cell in enumerate(row):
-        if cell == '#': walls.add(x + y * 1j)
-        elif cell == '[':
-            boxes_left.add(x + y * 1j)
-        elif cell == ']':
-            boxes_right.add(x + y * 1j)
-        elif cell == '@': pos = x + y * 1j
+rules = {'#': '##', 'O': '[]', '@': '@.', '.': '..'}
+top = top.translate(str.maketrans(rules)).splitlines()
+grid = {x + y * 1j: c for y, row in enumerate(top)
+                      for x, c in enumerate(row)}
+pos, = (p for p in grid if grid[p] == '@')
 
 for move in moves:
-    d = dirs[move]
-    can_move = True
-    to_check = [pos]
-    for cell in to_check:
-        new_pos = cell + d
-        if new_pos in to_check:
-            continue
-        if new_pos in walls:
+    d, can_move, todo = dirs[move], True, [pos]
+    for c in todo:
+        npos = c + d
+        if npos in todo: continue
+        if grid[npos] == '#':
             can_move = False
             break
-        if new_pos in boxes_left or new_pos in boxes_right:
-            to_check.append(new_pos)
-            if new_pos in boxes_left:
-                to_check.append(new_pos + 1)
-            elif new_pos in boxes_right:
-                to_check.append(new_pos - 1)
-    if not can_move:
-        continue
-    new_boxes_left, new_boxes_right = set(), set()
-    for cell in to_check:
-        if cell in boxes_left or cell in boxes_right:
-            if cell in boxes_left:
-                boxes_left.remove(cell)
-                new_boxes_left.add(cell + d)
-            elif cell in boxes_right:
-                boxes_right.remove(cell)
-                new_boxes_right.add(cell + d)
-    boxes_left = boxes_left.union(new_boxes_left)
-    boxes_right = boxes_right.union(new_boxes_right)
+        if grid[npos] in '[]':
+            todo.append(npos)
+            if grid[npos] == '[': todo.append(npos + 1)
+            elif grid[npos] == ']': todo.append(npos - 1)
+    if not can_move: continue
+    copy = grid.copy()
+    for c in todo:
+        grid[c] = '.'
+    for c in todo:
+        grid[c + d] = copy[c]
+    grid[pos], grid[pos + d] = '.', '@'
     pos += d
-    
-print(sum(int(box.real) + int(box.imag * 100) for box in boxes_left))
+
+print(sum([int(pos.real) + int(pos.imag * 100)
+           for pos in grid if grid[pos] == '[']))
