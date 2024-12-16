@@ -38,13 +38,11 @@ for move in moves:
         if grid[npos] in '[]':
             todo.append(npos)
             if grid[npos] == '[': todo.append(npos + 1)
-            elif grid[npos] == ']': todo.append(npos - 1)
+            else: todo.append(npos - 1)
     if not can_move: continue
     copy = grid.copy()
-    for c in todo:
-        grid[c] = '.'
-    for c in todo:
-        grid[c + d] = copy[c]
+    for c in todo: grid[c] = '.'
+    for c in todo: grid[c + d] = copy[c]
     grid[pos], grid[pos + d] = '.', '@'
     pos += d
 
