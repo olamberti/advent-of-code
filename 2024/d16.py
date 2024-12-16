@@ -14,7 +14,6 @@ def next_steps(score, pos, d, path):
     return res
 
 stack, cache = [(0, start, (1, 0), {start})], {}
-heapq.heapify(stack)
 best_score, best_path = float('inf'), set()
 
 while stack:
