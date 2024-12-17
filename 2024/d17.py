@@ -60,7 +60,10 @@ assert(F2(a) == run(a, b, c, prog))
 
 # This means that the output is calculated in reverse order and
 # the input is right shifted by 3 bits for each iteration. We can
-# use this information to find the input that results the given output:
+# use this information to find the input that results the given output,
+# by iterating over 8 bits at a time and checking if the output matches
+# the expected result. If it does, we left shift the input by 3 bits
+# (equivalent to multiplying by 8) and add it to the stack:
 
 stack = dq((0,))
 while stack:
@@ -84,7 +87,7 @@ def F3(a):
     output = []
     while a != 0:
         output.append(a & 7 ^ 3 ^ 5 ^ a >> (a & 7 ^ 3) & 7)
-        a >>= 3
+        a = a >> 3
     return output
 
 assert(F3(a) == run(a, b, c, prog))
