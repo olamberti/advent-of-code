@@ -10,16 +10,16 @@ def run(a, b, c, prog):
     while i < len(prog):
         combo = {0:0, 1:1, 2:2, 3:3, 4:a, 5:b, 6:c}
         opcode, op = prog[i], prog[i + 1]
+        i += 2
         match opcode:
             case 0: a = a // 2**combo[op]
             case 1: b = b ^ op
             case 2: b = combo[op] % 8
-            case 3: i = op - 2 if a else i
+            case 3: i = op if a else i
             case 4: b = b ^ c
             case 5: output.append(combo[op] % 8)
             case 6: b = a // 2**combo[op]
             case 7: c = a // 2**combo[op]
-        i += 2
     return output
 
 print(','.join([str(x) for x in run(a, b, c, prog)]))
