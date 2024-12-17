@@ -22,8 +22,7 @@ def run(a, b, c, prog):
         i += 2
     return output
 
-p1 = ','.join([str(x) for x in run(a, b, c, prog)])
-print(p1)
+print(','.join([str(x) for x in run(a, b, c, prog)]))
 
 # Part 2 - Input specific reverse engineering
 # Manual analysis of the 'run' function above with the
@@ -59,7 +58,6 @@ assert(F2(a) == run(a, b, c, prog))
 # We can use this information to reverse engineer the input:
 
 stack = dq((0,))
-
 while stack:
     x = stack.popleft()
     for a in (x*8 + i for i in range(8)):
