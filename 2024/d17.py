@@ -54,8 +54,13 @@ assert(F2(a) == run(a, b, c, prog))
 
 # From the above function we can see that the output is
 # calculated by a series of XOR and modulo operations resulting
-# in a 3 bit number (0-7). Then the input is divided by 8.
-# We can use this information to reverse engineer the input:
+# in a 3 bit number (0-7).
+# Then the input is divided by 8, which is equivalent 
+# to right shifting the input by 3 bits.
+
+# This means that the output is calculated in reverse order and
+# the input is right shifted by 3 bits for each iteration. We can
+# use this information to find the input that results the given output:
 
 stack = dq((0,))
 while stack:
