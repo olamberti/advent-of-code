@@ -69,6 +69,26 @@ while stack:
         res = run(a, 0, 0, prog)
         if res == prog:
             print(a)
-            exit()
+            break
         elif res == prog[-len(res):]:
             stack.append(a)
+    else: continue
+    break
+
+# Note: alternatively we can also change the modulo 8
+# operation to a bitwise AND with 7, and change the division
+# by 2**x to right shifts by x bits and reduce the function
+# even further:
+"""
+def F3(a):
+    output = []
+    while a != 0:
+        output.append(a & 7 ^ 3 ^ 5 ^ a >> (a & 7 ^ 3) & 7)
+        a >>= 3
+    return output
+
+assert(F3(a) == run(a, b, c, prog))
+"""
+# Since most bitwise operations are not reversible, we can't
+# directly reverse the function to find the input and we have
+# to use the iterative method above to find the solution.
