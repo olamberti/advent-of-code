@@ -1,11 +1,10 @@
-wall = [x + y*1j for r in open('d18.txt').readlines()
-                 for x, y in [map(int, r.strip().split(','))]]
+bytes = [x + y*1j for r in open('d18.txt').readlines()
+                  for x, y in [map(int, r.strip().split(','))]]
 W, H, F = 70, 70, 1024
 
 def bfs(cut):
     start, goal, steps = 0, W + H*1j, 0
-    front, seen = {start}, {start}
-    walls = set(wall[:cut])
+    front, seen, walls = {start}, {start}, set(bytes[:cut])
     while front:
         new = set()
         steps += 1
@@ -25,9 +24,9 @@ def bfs(cut):
 
 print(bfs(F))
 
-low, high = F, len(wall)
+low, high = F, len(bytes)
 while high - low > 1:
     i = (low + high) // 2
     if bfs(i): low = i
     else: high = i
-print(int(wall[low].real), int(wall[low].imag), sep=',')
+print(int(bytes[low].real), int(bytes[low].imag), sep=',')
