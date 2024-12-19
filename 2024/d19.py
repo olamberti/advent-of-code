@@ -10,5 +10,5 @@ def count(design):
     return sum(count(d) for d in new_designs)
 
 result = [count(d) for d in designs]
-print(sum(1 for x in result if x))
+print(sum(bool(x) for x in result))
 print(sum(result))
