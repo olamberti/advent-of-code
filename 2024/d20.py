@@ -11,17 +11,14 @@ while pos != goal:
             dist[next_pos] = dist[pos] + 1
             pos = next_pos
 
-def md(a, b):
-    return int(abs(a.real - b.real) + abs(a.imag - b.imag))
+path, p1, p2, T = list(dist.keys()), 0, 0, 100
+for d1, a in enumerate(path):
+    for b in path[d1 + 3:]:
+        d = int(abs(a.real - b.real) + abs(a.imag - b.imag))
+        gain = dist[b] - dist[a] - d
+        if d <= 2 and gain >= T: p1 += 1
+        if d <= 20 and gain >= T: p2 += 1
 
-path, c1, c2, T = list(dist.keys()), 0, 0, 100
-for d1, p1 in enumerate(path):
-    for p2 in path[d1 + 3:]:
-        d = md(p1, p2)
-        gain = dist[p2] - dist[p1] - d
-        if d <= 2 and gain >= T: c1 += 1
-        if d <= 20 and gain >= T: c2 += 1
-
-print(c1)
-print(c2)
+print(p1)
+print(p2)
 # Slow but works, might improve it later...
