@@ -15,11 +15,12 @@ for n in open('d22.txt').readlines():
         prices.append(x % 10)
     changes = [prices[i + 1] - prices[i] for i in range(len(prices) - 1)]
     seen = set()
-    for i in range(2000 - 3):
+    for i in range(len(changes) - 3):
         seq = tuple(changes[i : i + 4])
         if seq in seen: continue
         seen.add(seq)
         bananas[seq] += prices[i + 4]
     p1 += x
+    
 print(p1)
 print(max(bananas.values()))
