@@ -7,7 +7,7 @@ kernel = np.ones((3, 3), dtype=np.uint8)                          # neighbor ker
 kernel[1, 1] = 0                                                  # exclude center
 
 def removable(grid):                                              # removable rolls function              
-    count = convolve(grid, kernel, mode='constant', cval=0)       # neighbor count
+    count = convolve(grid, kernel, mode='constant')               # neighbor count
     return grid & (count < 4)                                     # rolls with < 4 neighbors    
 
 n, i = 0, 0                                                       # counter and iterator
