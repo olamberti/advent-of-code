@@ -1,24 +1,20 @@
-rolls = set()                                                   # set for rolls
-for y, line in enumerate(open('d04.txt').readlines()):          # read lines
-    for x, e in enumerate(line.strip()):                        # read elements    
-        if e == '@': rolls.add(x + y*1j)                        # add roll with complex coord        
+import numpy as np
+from scipy.ndimage import convolve
 
-def rem(rs):                                                    # removable rolls function  
-    res = set()                                                 # result set
-    for r in rs:                                                # loop through rolls
-        ns = 0                                                  # neighbor count
-        for a in (1, 1-1j, -1j, -1-1j, -1, -1+1j, 1j, 1+1j):    # adjacent coords
-            if r + a in rs: ns += 1                             # count neighbors
-        if ns < 4: res.add(r)                                   # add if < 4 neighbors
-    return(res)                                                 # return result
+grid = np.array([[*line.strip()]for line in open('d04.txt')]) == '@'    # read grid
+grid = grid.astype(np.uint8)                                            # convert to uint8         
+kernel = np.array([[1, 1, 1],[1, 0, 1],[1, 1, 1]], dtype=np.uint8)      # neighbor kernel
 
-gone, count = rem(rolls), 0                                     # initial removal & counter 
-rolls -= gone                                                   # update rolls
-count += len(gone)                                              # update count
-print(count)                                                    # part 1 result
+def removable(grid):                                                    # removable rolls function              
+    count = convolve(grid, kernel, mode='constant', cval= 0)            # neighbor count
+    return grid & (count < 4)                                           # rolls with < 4 neighbors    
 
-while len(gone) > 0:                                            # while rolls are removed      
-    gone = rem(rolls)                                           # remove rolls
-    rolls -= gone                                               # update rolls
-    count += len(gone)                                          # update count
-print(count)                                                    # part 2 result
+n, i = 0, 0                                                             # counter and iterator
+while True:                                                             # main loop            
+    gone = removable(grid)                                              # removable rolls         
+    if np.sum(gone) == 0:                                               # if none removed                      
+        print(n)                                                        # part2 result
+        break                                                           # exit loop
+    i, n = i + 1, n + np.sum(gone)                                      # update counter and iterator               
+    if i == 1: print(n)                                                 # part1 result
+    grid -= gone                                                        # update grid                 
