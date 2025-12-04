@@ -3,7 +3,7 @@ for y, line in enumerate(open('d04.txt').readlines()):          # read lines
     for x, e in enumerate(line.strip()):                        # read elements    
         if e == '@': rolls.add(x + y*1j)                        # add roll with complex coord        
 
-def rem(rs):                                                    # remove rolls function  
+def rem(rs):                                                    # removable rolls function  
     res = set()                                                 # result set
     for r in rs:                                                # loop through rolls
         ns = 0                                                  # neighbor count
