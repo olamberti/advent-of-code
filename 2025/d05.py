@@ -10,4 +10,15 @@ for id in ids:
             break
 print(p1)
 
-# part 2 missing
+merged = []
+ranges.sort()
+for r in ranges:
+    if not merged or merged[-1][1] < r[0]:
+        merged.append(r)
+    else:
+        merged[-1] = (merged[-1][0], max(merged[-1][1], r[1]))
+
+p2 = 0
+for m in merged:
+    p2 += m[1] - m[0] + 1
+print(p2)
