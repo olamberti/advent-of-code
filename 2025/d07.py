@@ -1,23 +1,22 @@
-p1 = 0 
-for line in open('d07.txt').read().splitlines():
-    if 'S' in line:
-        s = line.index('S')
-        beams = {s: 1}
+from collections import defaultdict
+
+splits = 0 
+for i, row in enumerate(open('d07.txt')):
+    if i == 0:
+        beams = {row.index('S'): 1}
         continue
-    elif '^' not in line:
+    elif '^' not in row:
         continue
     
-    new_beams = dict()
+    new_beams = defaultdict(int)
     for b, n in beams.items():
-        if line[b] == '.':
-           if b in new_beams: new_beams[b] += n
-           else: new_beams[b] = n
+        if row[b] == '.':
+           new_beams[b] += n
         else:
-            p1 += 1
-            for x in (b-1, b+1):
-                if x in new_beams: new_beams[x] += n
-                else: new_beams[x] = n
+            splits += 1
+            new_beams[b-1] += n
+            new_beams[b+1] += n
     beams = new_beams
 
-print(p1)
+print(splits)
 print(sum(new_beams.values()))
