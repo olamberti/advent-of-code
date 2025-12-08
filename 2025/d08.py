@@ -14,9 +14,9 @@ n = 0
 while len(circuits) > 1:
     n += 1
     _, (j1, j2) = heapq.heappop(dists)
-    for j, c in enumerate(circuits):
-        if boxes[j1] in c: i1, a = j, c
-        if boxes[j2] in c: i2, b = j, c      
+    for i, c in enumerate(circuits):
+        if boxes[j1] in c: i1, a = i, c
+        if boxes[j2] in c: i2, b = i, c      
     if n == 1000:
         lens = sorted([len(c) for c in circuits], reverse=True)
         print(lens[0] * lens[1] * lens[2])
