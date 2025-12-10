@@ -1,16 +1,17 @@
+# Read input point list
 ps = [tuple(map(int, row.split(','))) for row in open('d09.txt')]
 
 # Rectangle area (inclusive grid)
 def area(a, b):
     return (abs(b[0] - a[0]) + 1) * (abs(b[1] - a[1]) + 1)
 
-# Normalized direction vector
+# Normalized direction vector (only horizontal / vertical)
 def nv(a, b):
     dx, dy = b[0] - a[0], b[1] - a[1]
     l = abs(dx) + abs(dy)
     return dx // l, dy // l
 
-# Perimeter for polygon points
+# Perimeter for polygon points (only horizontal / vertical edges)
 def length(poly):
     ans = 0
     for i in range(len(poly)):
@@ -18,7 +19,7 @@ def length(poly):
         ans += max(abs(b[0] - a[0]), abs(b[1] - a[1]))
     return ans
 
-# Check if segment AB contains no segment from E
+# Check if rectangle AB does not intersect any edges
 def isinside(a, b, es):
     x1, x2 = sorted((a[0], b[0]))
     y1, y2 = sorted((a[1], b[1]))
