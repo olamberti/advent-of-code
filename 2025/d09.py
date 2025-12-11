@@ -34,12 +34,12 @@ def isinside(a, b, es):
     return True
      
 # ------------------ PART 1 ------------------
-p1 = 0
+areas = []
 for i in range(len(ps)):
     for j in range(i + 1, len(ps)):
-        p1 = max(p1, area(ps[i], ps[j]))
+        areas.append((area(ps[i], ps[j]), ps[i], ps[j]))
 
-print(p1)
+print(max([x[0] for x in areas]))
 
 # ------------------ PART 2 ------------------
 
@@ -69,11 +69,7 @@ b = b1 if length(b1) > length(b2) else b2
 edges = [(b[i], b[(i + 1) % len(b)]) for i in range(len(b))]
 
 # Find max area rectangle inside boundary
-p2 = 0
-for i in range(len(ps)):
-    for j in range(i + 1, len(ps)):
-        a = area(ps[i], ps[j])
-        if a >= p2 and isinside(ps[i], ps[j], edges):
-            p2 = a
-
-print(p2)
+for a, p1, p2 in sorted(areas, reverse=True):
+    if isinside(p1, p2, edges):
+        print(a)
+        break
