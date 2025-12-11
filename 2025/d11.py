@@ -2,8 +2,8 @@ from functools import cache
 
 outs = dict()
 for row in open('d11.txt').read().splitlines():
-    start, *ends = row.split(' ')
-    outs[start[:-1]] = ends
+    start, ends = row.split(': ')
+    outs[start] = ends.split(' ')
 
 @cache
 def n(pos, fft, dac):
