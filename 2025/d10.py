@@ -28,15 +28,12 @@ for row in open('d10.txt').read().splitlines():
     def presses(target):
         if all(x == 0 for x in target): return 0
         if any(x < 0 for x in target): return float('inf')
-
         total = float('inf')
         for diff, p in options.items():
             new_target = tuple((b - a) for a, b in zip(diff, target))
             if all(a % 2 == 0 for a in new_target):
-                half_target = tuple(x // 2 for x in new_target)
-                total = min(total, p + 2 * presses(half_target))
-        return total
-    
+                total = min(total, p + 2 * presses(tuple(x // 2 for x in new_target)))
+        return total 
     p2 += presses(jolts)
 
 print(p1)
